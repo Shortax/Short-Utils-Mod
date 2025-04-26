@@ -1,3 +1,15 @@
 {
-  "block.short_utils.obsid_pressure_plate": "Obsidian Druckplatte"
+  "block.short_utils.obsid_pressure_plate": "Obsidian Druckplatte",
+  "block.short_utils.white_redstone_lamp": "Weiße Redstone-Lampe",
+  "block.short_utils.gray_redstone_lamp": "Graue Redstone-Lampe",
+  "block.short_utils.brown_redstone_lamp": "Braune Redstone-Lampe",
+  "block.short_utils.red_redstone_lamp": "Rote Redstone-Lampe",
+  "block.short_utils.orange_redstone_lamp": "Orangefarbene Redstone-Lampe",
+  "block.short_utils.yellow_redstone_lamp": "Gelbe Redstone-Lampe",
+  "block.short_utils.green_redstone_lamp": "Grüne Redstone-Lampe",
+  "block.short_utils.blue_redstone_lamp": "Blaue Redstone-Lampe",
+  "block.short_utils.purple_redstone_lamp": "Lila Redstone-Lampe",
+  "block.short_utils.pink_redstone_lamp": "Rosa Redstone-Lampe",
+  "block.short_utils.cyan_redstone_lamp": "Türkise Redstone-Lampe",
+  "block.short_utils.lime_redstone_lamp": "Hellgrüne Redstone-Lampe"
 }

@@ -5,6 +5,8 @@ build/
 out/
 classes/
 
+src/main/generated/
+
 # eclipse
 
 *.launch

@@ -6,6 +6,8 @@ import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.RedstoneLampBlock;
+import net.minecraft.item.Item;
+import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
@@ -15,7 +17,7 @@ import java.util.Map;
 
 public class colRedstoneLamp {
 
-    static String[] COLORS = {
+    public static String[] COLORS = {
             "white",
             "gray",
             "brown",
@@ -40,7 +42,7 @@ public class colRedstoneLamp {
         {
             Identifier ident = Identifier.of(ShortUtils.MOD_ID,getID(col));
             RegistryKey<Block> key = RegistryKey.of(RegistryKeys.BLOCK,ident);
-            lamps.put(col, new cRLamp(AbstractBlock.Settings.copy(Blocks.REDSTONE_BLOCK),col,key));
+            lamps.put(col, new cRLamp(AbstractBlock.Settings.copy(Blocks.REDSTONE_LAMP),col,key));
         }
 
         return lamps;
@@ -49,6 +51,27 @@ public class colRedstoneLamp {
     public static Identifier getIdent(String ModID, String color) { return Identifier.of(ModID, getID(color)); }
     public static String getID(String color) { return color+ "_redstone_lamp"; }
 
+    public static Item getDye(String color) {
+        return switch (color) {
+            case "white" -> Items.WHITE_DYE;
+            case "orange" -> Items.ORANGE_DYE;
+            case "magenta" -> Items.MAGENTA_DYE;
+            case "light_blue" -> Items.LIGHT_BLUE_DYE;
+            case "yellow" -> Items.YELLOW_DYE;
+            case "lime" -> Items.LIME_DYE;
+            case "pink" -> Items.PINK_DYE;
+            case "gray" -> Items.GRAY_DYE;
+            case "light_gray" -> Items.LIGHT_GRAY_DYE;
+            case "cyan" -> Items.CYAN_DYE;
+            case "purple" -> Items.PURPLE_DYE;
+            case "blue" -> Items.BLUE_DYE;
+            case "brown" -> Items.BROWN_DYE;
+            case "green" -> Items.GREEN_DYE;
+            case "red" -> Items.RED_DYE;
+            case "black" -> Items.BLACK_DYE;
+            default -> Items.WHITE_DYE; // or throw exception if needed
+        };
+    }
 }
 
 class cRLamp extends RedstoneLampBlock

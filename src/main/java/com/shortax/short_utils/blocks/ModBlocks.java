@@ -16,7 +16,6 @@ import com.shortax.short_utils.blocks.cRedstoneLamp.colRedstoneLamp;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Consumer;
 
 public class ModBlocks {
@@ -25,6 +24,8 @@ public class ModBlocks {
     public static Identifier OBSID_PRESSURE_PLATE_IDENT;
 
     public static Map<String, Block> COLORED_REDSTONE_LAMPS;
+
+    public static String[] Colors = colRedstoneLamp.COLORS;
 
     public static void init()
     {
@@ -37,7 +38,7 @@ public class ModBlocks {
         COLORED_REDSTONE_LAMPS = colRedstoneLamp.init(ShortUtils.MOD_ID);
         for(String col : COLORED_REDSTONE_LAMPS.keySet())
         {
-            COLORED_REDSTONE_LAMPS.compute(col, (k, b) -> registerBlock(colRedstoneLamp.getID(col), b, colRedstoneLamp.getIdent(ShortUtils.MOD_ID,col)));
+            COLORED_REDSTONE_LAMPS.compute(col, (k, b) -> registerBlock(getLampID(col), b, getLampIdent(ShortUtils.MOD_ID,col)));
         }
 
         registerBlocks();
@@ -52,7 +53,6 @@ public class ModBlocks {
 
             for(String col : COLORED_REDSTONE_LAMPS.keySet())
                 entries.add(COLORED_REDSTONE_LAMPS.get(col));
-
         });
     }
 
@@ -75,4 +75,8 @@ public class ModBlocks {
             action.accept(item);
         }
     }
+
+    public static Identifier getLampIdent(String ModID, String color) { return colRedstoneLamp.getIdent(ModID,color); }
+    public static String getLampID(String color) { return colRedstoneLamp.getID(color); }
+    public static Item getDye(String color){ return colRedstoneLamp.getDye(color); }
 }

@@ -7,6 +7,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
+import net.minecraft.data.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
@@ -27,9 +28,18 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             @Override
             public void generate() {
                 ShapedRecipeJsonBuilder.create(Registries.ITEM,RecipeCategory.REDSTONE,ModBlocks.OBSID_PRESSURE_PLATE)
-                        .pattern("##").input('#',Blocks.OBSIDIAN)
+                        .pattern("##")
+                        .input('#',Blocks.OBSIDIAN)
                         .criterion(hasItem(Items.OBSIDIAN),conditionsFromItem(Items.OBSIDIAN))
                         .offerTo(exporter);
+
+                ModBlocks.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.keySet(),color -> ShapelessRecipeJsonBuilder
+                        .create(Registries.ITEM,RecipeCategory.REDSTONE,ModBlocks.COLORED_REDSTONE_LAMPS.get(color))
+                        .input(Blocks.REDSTONE_LAMP,1)
+                        .input(ModBlocks.getDye(color),1)
+                        .criterion(hasItem(Items.REDSTONE_LAMP),conditionsFromItem(Items.REDSTONE_LAMP))
+                        .offerTo(exporter)
+                );
             }
         };
     }
