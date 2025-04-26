@@ -1,6 +1,7 @@
 package com.shortax.short_utils.dataGen;
 
-import com.shortax.short_utils.blocks.ModBlocks;
+import com.shortax.short_utils.Initializers.ModBlocks;
+import com.shortax.short_utils.Initializers.Utils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
@@ -33,10 +34,10 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                         .criterion(hasItem(Items.OBSIDIAN),conditionsFromItem(Items.OBSIDIAN))
                         .offerTo(exporter);
 
-                ModBlocks.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.keySet(),color -> ShapelessRecipeJsonBuilder
+                Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.keySet(), color -> ShapelessRecipeJsonBuilder
                         .create(Registries.ITEM,RecipeCategory.REDSTONE,ModBlocks.COLORED_REDSTONE_LAMPS.get(color))
                         .input(Blocks.REDSTONE_LAMP,1)
-                        .input(ModBlocks.getDye(color),1)
+                        .input(Utils.getDye(color),1)
                         .criterion(hasItem(Items.REDSTONE_LAMP),conditionsFromItem(Items.REDSTONE_LAMP))
                         .offerTo(exporter)
                 );

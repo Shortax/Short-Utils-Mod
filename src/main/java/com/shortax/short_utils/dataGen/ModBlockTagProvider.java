@@ -1,6 +1,6 @@
 package com.shortax.short_utils.dataGen;
 
-import com.shortax.short_utils.blocks.ModBlocks;
+import com.shortax.short_utils.Initializers.ModBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;

@@ -1,6 +1,7 @@
 package com.shortax.short_utils.dataGen;
 
-import com.shortax.short_utils.blocks.ModBlocks;
+import com.shortax.short_utils.Initializers.ModBlocks;
+import com.shortax.short_utils.Initializers.Utils;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
@@ -17,29 +18,48 @@ public class ModModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
-        final TextureMap obsidianTexture = TextureMap.all(Identifier.ofVanilla("block/obsidian"));
+        TextureMap obsidianTexture = TextureMap.all(Identifier.ofVanilla("block/obsidian"));
+        //TextureMap DEBUG_TEXTURE = TextureMap.all(Identifier.ofVanilla("block/black_concrete"));
 
-        final Identifier ObsidPlateDownID = Models.PRESSURE_PLATE_DOWN.upload(ModBlocks.OBSID_PRESSURE_PLATE,obsidianTexture,blockStateModelGenerator.modelCollector);
-        final Identifier ObsidPlateUpID = Models.PRESSURE_PLATE_UP.upload(ModBlocks.OBSID_PRESSURE_PLATE,obsidianTexture,blockStateModelGenerator.modelCollector);
 
-        blockStateModelGenerator.blockStateCollector.accept(
-                BlockStateModelGenerator.createPressurePlateBlockState(ModBlocks.OBSID_PRESSURE_PLATE,
-                        BlockStateModelGenerator.createWeightedVariant(ObsidPlateUpID),
-                        BlockStateModelGenerator.createWeightedVariant(ObsidPlateDownID
-                )));
+        //Obsidian Pressure Plate
+        register_plate(ModBlocks.OBSID_PRESSURE_PLATE,blockStateModelGenerator,obsidianTexture);
 
-        blockStateModelGenerator.registerParentedItemModel(ModBlocks.OBSID_PRESSURE_PLATE, ObsidPlateUpID);
+        //colored Lamps
+        Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(), block -> registerCustomLamp(block,blockStateModelGenerator));
 
-        ModBlocks.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(),block -> registerCustomLamp(block,blockStateModelGenerator));
+        //combined block entity
+        //register_cube_test(ModBlockEntities.COMBINED_BLOCK,blockStateModelGenerator,DEBUG_TEXTURE);
 
     }
 
-    private void registerCustomLamp(Block b, BlockStateModelGenerator blockStateModelGenerator) {
-        WeightedVariant weightedVariant = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(b, blockStateModelGenerator.modelCollector));
-        WeightedVariant weightedVariant2 = BlockStateModelGenerator.createWeightedVariant(blockStateModelGenerator.createSubModel(b, "_on", Models.CUBE_ALL, TextureMap::all));
+    @SuppressWarnings("unused")
+    private void register_cube_test(Block block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
+    {
+        Identifier parent = Models.CUBE_ALL.upload(block,parentTexture,blockStateModelGenerator.modelCollector);
+        blockStateModelGenerator.registerParentedItemModel(block,parent);
+    }
+
+    private void register_plate(Block block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture )
+    {
+        Identifier PlateDownID = Models.PRESSURE_PLATE_DOWN.upload(block,parentTexture,blockStateModelGenerator.modelCollector);
+        Identifier PlateUpID = Models.PRESSURE_PLATE_UP.upload(block,parentTexture,blockStateModelGenerator.modelCollector);
 
         blockStateModelGenerator.blockStateCollector.accept(
-                VariantsBlockModelDefinitionCreator.of(b).with(BlockStateModelGenerator.createBooleanModelMap(Properties.LIT,
+                BlockStateModelGenerator.createPressurePlateBlockState(block,
+                        BlockStateModelGenerator.createWeightedVariant(PlateUpID),
+                        BlockStateModelGenerator.createWeightedVariant(PlateDownID
+                        )));
+
+        blockStateModelGenerator.registerParentedItemModel(block, PlateUpID);
+    }
+
+    private void registerCustomLamp(Block block, BlockStateModelGenerator blockStateModelGenerator) {
+        WeightedVariant weightedVariant = BlockStateModelGenerator.createWeightedVariant(TexturedModel.CUBE_ALL.upload(block, blockStateModelGenerator.modelCollector));
+        WeightedVariant weightedVariant2 = BlockStateModelGenerator.createWeightedVariant(blockStateModelGenerator.createSubModel(block, "_on", Models.CUBE_ALL, TextureMap::all));
+
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockModelDefinitionCreator.of(block).with(BlockStateModelGenerator.createBooleanModelMap(Properties.LIT,
                         weightedVariant2,
                         weightedVariant
                 )));
