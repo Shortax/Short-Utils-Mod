@@ -1,0 +1,11 @@
+{
+	"required": true,
+	"package": "com.shortax.short_utils.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin"
+	],
+	"injectors": {
+		"defaultRequire": 1
+	}
+}

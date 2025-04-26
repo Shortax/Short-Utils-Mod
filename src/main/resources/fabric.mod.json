@@ -1,0 +1,36 @@
+{
+	"schemaVersion": 1,
+	"id": "short_utils",
+	"version": "${version}",
+	"name": "Short Utils",
+	"description": "Lots of small additions",
+	"authors": [
+		"Shortax7"
+	],
+	"license": "MIT",
+	"icon": "assets/short_utils/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.shortax.short_utils.ShortUtils"
+		],
+		"fabric-datagen": [
+			"com.shortax.short_utils.ShortUtilsDataGenerator"
+		],
+		"client": [
+			"com.shortax.short_utils.ShortUtilsClient"
+		]
+	},
+	"mixins": [
+		"short_utils.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.11",
+		"minecraft": "~1.21.5",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}

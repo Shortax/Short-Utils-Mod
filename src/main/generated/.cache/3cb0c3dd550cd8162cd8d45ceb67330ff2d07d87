@@ -1,0 +1,5 @@
+// 1.21.5	-999999999-01-01T00:00:00	Short Utils/Model Definitions
+844c7b0b61da03db3a7cd26ce6e7a1c67ab9134c assets/short_utils/blockstates/obsid_pressure_plate.json
+f2727e116c5723beaa5d6dc23d441b3012c9bcf6 assets/short_utils/items/obsid_pressure_plate.json
+0986eedde81a67a7a70b964f477759457c38ea3f assets/short_utils/models/block/obsid_pressure_plate.json
+296a821f041dc137e9cc9da48e0c6f821411df31 assets/short_utils/models/block/obsid_pressure_plate_down.json
