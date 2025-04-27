@@ -15,7 +15,7 @@ public class ModBlockEntityTypes {
         return Registry.register(Registries.BLOCK_ENTITY_TYPE, Identifier.of(ShortUtils.MOD_ID, path), blockEntityType);
     }
 
-    public static final BlockEntityType<combined_block_entity> COMBINED_TYPE = register(
+    public static final BlockEntityType<combined_block_entity> COMBINED_BLOCK_TYPE = register(
             "combined_block",
             FabricBlockEntityTypeBuilder.create(combined_block_entity::new, ModBlockEntities.COMBINED_BLOCK).build()
     );

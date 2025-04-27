@@ -1,5 +1,6 @@
 package com.shortax.short_utils.blocks.plates;
 
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.PressurePlateBlock;
@@ -13,14 +14,10 @@ public class Obsid_Plate extends PressurePlateBlock{
 
     private static final float strength = 2f;
     private static final float resistance = 1200f;
+    private static final BlockSetType type = BlockSetType.STONE;
+    public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.create().strength(strength,resistance).noCollision().requiresTool().sounds(BlockSoundGroup.DEEPSLATE);
 
-    public Obsid_Plate(RegistryKey<Block> key)
-    {
-        super(BlockSetType.STONE, Settings.create().strength(strength,resistance).noCollision().requiresTool().sounds(BlockSoundGroup.DEEPSLATE).registryKey(key));
-    }
-
-    @SuppressWarnings("unused")
-    public Obsid_Plate(BlockSetType type, Settings settings) {
+    public Obsid_Plate(Settings settings) {
 
         super(type, settings);
     }

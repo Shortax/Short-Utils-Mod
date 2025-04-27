@@ -1,9 +1,7 @@
 package com.shortax.short_utils.blockentities.combinedBlocks;
 
 import com.mojang.serialization.MapCodec;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -12,6 +10,8 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class combined_block extends BlockWithEntity {
+
+    public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.copy(Blocks.BLACK_CONCRETE);
 
     public combined_block(Settings settings) {
         super(settings);

@@ -1,7 +1,6 @@
 package com.shortax.short_utils.blocks.cRedstoneLamp;
 
 
-import com.shortax.short_utils.ShortUtils;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
@@ -33,14 +32,13 @@ public class colRedstoneLamp {
     };
 
 
-    public static Map<String, Block> init(String MOD_ID)
+    public static Map<String, Block> get_Lamps(String MOD_ID)
     {
         Map<String, Block> lamps = new HashMap<>();
 
-
         for(String col : COLORS)
         {
-            Identifier ident = Identifier.of(ShortUtils.MOD_ID,getID(col));
+            Identifier ident = Identifier.of(MOD_ID,getID(col));
             RegistryKey<Block> key = RegistryKey.of(RegistryKeys.BLOCK,ident);
             lamps.put(col, new cRLamp(AbstractBlock.Settings.copy(Blocks.REDSTONE_LAMP),col,key));
         }

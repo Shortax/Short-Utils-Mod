@@ -1,6 +1,7 @@
 package com.shortax.short_utils;
 
 import com.shortax.short_utils.Initializers.ModBlockEntities;
+import com.shortax.short_utils.Initializers.ModItems;
 import com.shortax.short_utils.blockentities.ModBlockEntityTypes;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ public class ShortUtils implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
+		ModItems.init();
 		ModBlocks.init();
 		ModBlockEntities.init();
 		ModBlockEntityTypes.init();
