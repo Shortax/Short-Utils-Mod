@@ -15,6 +15,7 @@ import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -56,9 +57,17 @@ public class Utils {
     }
 
     public static <T> void applyToEach(Collection<T> list, Consumer<T> action) {
-        for (T item : list) {
-            action.accept(item);
+        for (T o : list) {
+            action.accept(o);
         }
+    }
+
+    public static <T,E> Collection<E> applyToEachReturn(Collection<T> list, Function<T,E> action){
+        Collection<E> ret = new ArrayList<>();
+        for(T o : list){
+            ret.add(action.apply(o));
+        }
+        return ret;
     }
 
     @SuppressWarnings("unused")
