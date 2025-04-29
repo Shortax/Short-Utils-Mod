@@ -11,13 +11,15 @@ import org.jetbrains.annotations.Nullable;
 public class FakeTrapdoor extends TrapdoorBlock {
     public Block ORIGINAL;
 
+    private static final float strength = 0.1f;
+
     public static class OAK_TYPE extends FakeTrapdoor{
         public static BlockSetType type = BlockSetType.OAK;
         private static final Block reference = Blocks.OAK_TRAPDOOR;
         public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.copy(reference);
 
         public OAK_TYPE(Settings settings) {
-            super(type, settings.nonOpaque());
+            super(type, settings);
             this.ORIGINAL = reference;
         }
     }
@@ -28,7 +30,7 @@ public class FakeTrapdoor extends TrapdoorBlock {
         public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.copy(reference);
 
         public SPRUCE_TYPE(Settings settings) {
-            super(type, settings.nonOpaque());
+            super(type, settings);
             this.ORIGINAL = reference;
         }
     }
@@ -39,13 +41,13 @@ public class FakeTrapdoor extends TrapdoorBlock {
         public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.copy(reference);
 
         public IRON_TYPE(Settings settings) {
-            super(type, settings.nonOpaque());
+            super(type, settings);
             this.ORIGINAL = reference;
         }
     }
 
     public FakeTrapdoor(BlockSetType type, Settings settings) {
-        super(type, settings);
+        super(type, settings.nonOpaque().strength(strength));
     }
 
     @Override
