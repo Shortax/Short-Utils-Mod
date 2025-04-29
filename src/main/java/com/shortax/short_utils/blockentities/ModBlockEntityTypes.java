@@ -21,5 +21,6 @@ public class ModBlockEntityTypes {
     );
 
     public static void init() {
+
     }
 }

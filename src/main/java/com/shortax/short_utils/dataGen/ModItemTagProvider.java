@@ -26,5 +26,9 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
                         Block::asItem), //->
                 getOrCreateTagBuilder(ModTags.Items.COL_RED_LAMP_ITEM)::add
         );
+
+        getOrCreateTagBuilder(ModTags.Items.FAKE_REDSTONE_BLOCKS).add(ModBlocks.FAKE_OAK_TRAPDOOR.asItem());
+        getOrCreateTagBuilder(ModTags.Items.FAKE_REDSTONE_BLOCKS).add(ModBlocks.FAKE_SPRUCE_TRAPDOOR.asItem());
+        getOrCreateTagBuilder(ModTags.Items.FAKE_REDSTONE_BLOCKS).add(ModBlocks.FAKE_IRON_TRAPDOOR.asItem());
     }
 }

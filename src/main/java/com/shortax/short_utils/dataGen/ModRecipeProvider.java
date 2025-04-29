@@ -10,6 +10,7 @@ import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
 import net.minecraft.data.recipe.ShapelessRecipeJsonBuilder;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.registry.Registries;
@@ -41,15 +42,39 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                         .offerTo(exporter)
                 );
 
-                ShapelessRecipeJsonBuilder.create(Registries.ITEM,RecipeCategory.REDSTONE,Blocks.REDSTONE_LAMP)
+                ShapelessRecipeJsonBuilder
+                        .create(Registries.ITEM,RecipeCategory.REDSTONE,Blocks.REDSTONE_LAMP)
                         .input(ingredientFromTag(ModTags.Items.COL_RED_LAMP_ITEM))
                         .input(Items.REDSTONE)
                         .criterion("has_col_redstone_lamp",conditionsFromItem(Items.REDSTONE_LAMP))
                         .offerTo(exporter, String.valueOf(Identifier.of(ShortUtils.MOD_ID,"reverse_color_redstone_lamp")));
 
+                create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_OAK_TRAPDOOR,ModBlocks.FAKE_OAK_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
+                create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_SPRUCE_TRAPDOOR,ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
+                create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_IRON_TRAPDOOR,ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
+
+            }
+
+            public void create_reversible_recipe(RecipeCategory category, ItemConvertible outputItem, ItemConvertible original, ItemConvertible converter, ItemConvertible reconverter){
+                String path = "reverse_" + outputItem.asItem().getName().getString().replace(" ", "_").toLowerCase();
+
+                ShapelessRecipeJsonBuilder
+                        .create(Registries.ITEM,category,outputItem)
+                        .input(original)
+                        .input(converter)
+                        .criterion(hasItem(original.asItem()),conditionsFromItem(original.asItem()))
+                        .offerTo(exporter);
+
+                ShapelessRecipeJsonBuilder
+                        .create(Registries.ITEM,RecipeCategory.REDSTONE,original)
+                        .input(outputItem)
+                        .input(reconverter)
+                        .criterion(hasItem(outputItem.asItem()),conditionsFromItem(outputItem))
+                        .offerTo(exporter,path);
             }
         };
     }
+
 
     @Override
     public String getName() {

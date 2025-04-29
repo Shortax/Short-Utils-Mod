@@ -2,6 +2,7 @@ package com.shortax.short_utils.dataGen;
 
 import com.shortax.short_utils.Initializers.ModBlocks;
 import com.shortax.short_utils.Initializers.Utils;
+import com.shortax.short_utils.blocks.FakeRedstoneBlocks.FakeTrapdoor;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
@@ -31,6 +32,24 @@ public class ModModelProvider extends FabricModelProvider {
         //combined block entity
         //register_cube_test(ModBlockEntities.COMBINED_BLOCK,blockStateModelGenerator,DEBUG_TEXTURE);
 
+        registerFake_Trapdoor(ModBlocks.FAKE_OAK_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_OAK_TRAPDOOR.ORIGINAL));
+        registerFake_Trapdoor(ModBlocks.FAKE_SPRUCE_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL));
+        registerFake_Trapdoor(ModBlocks.FAKE_IRON_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL));
+
+    }
+
+    private void registerFake_Trapdoor(FakeTrapdoor block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
+    {
+        WeightedVariant weightedVariant = BlockStateModelGenerator.createWeightedVariant(Models.TEMPLATE_TRAPDOOR_TOP.upload(block, parentTexture, blockStateModelGenerator.modelCollector));
+
+        Identifier identifier = Models.TEMPLATE_TRAPDOOR_BOTTOM.upload(block, parentTexture, blockStateModelGenerator.modelCollector);
+        WeightedVariant middleVariant = BlockStateModelGenerator.createWeightedVariant(identifier);
+
+        WeightedVariant weightedVariant2 = BlockStateModelGenerator.createWeightedVariant(Models.TEMPLATE_TRAPDOOR_OPEN.upload(block, parentTexture, blockStateModelGenerator.modelCollector));
+
+
+        blockStateModelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createTrapdoorBlockState(block, weightedVariant, middleVariant, weightedVariant2));
+        blockStateModelGenerator.registerParentedItemModel(block, identifier);
     }
 
     @SuppressWarnings("unused")

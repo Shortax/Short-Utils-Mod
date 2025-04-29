@@ -14,5 +14,9 @@
   "block.short_utils.cyan_redstone_lamp": "Türkise Redstone-Lampe",
   "block.short_utils.lime_redstone_lamp": "Hellgrüne Redstone-Lampe",
 
-  "block.short_utils.combined_block": "Kombinierter Block"
+  "block.short_utils.combined_block": "Kombinierter Block",
+  
+  "block.short_utils.fake_oak_trapdoor": "Falsche Eichenholzfalltür",
+  "block.short_utils.fake_spruce_trapdoor": "Falsche Fichtenholzfalltür",
+  "block.short_utils.fake_iron_trapdoor": "Falsche Eisenfalltür"
 }

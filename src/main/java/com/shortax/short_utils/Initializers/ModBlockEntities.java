@@ -21,6 +21,7 @@ public class ModBlockEntities {
         COMBINED_BLOCK = (combined_block) Utils.registerBlock_C(COMBINED_BLOCK_ID, combined_block::new,combined_block.DEFAULT_SETTINGS);
         toAdd.add(COMBINED_BLOCK);
 
-        Utils.registerItemGroupEntry("Block Entities", ShortUtils.MOD_ID,ItemGroups.BUILDING_BLOCKS,toAdd);
+        Utils.registering("Block Entities",ShortUtils.MOD_ID);
+        Utils.registerItemGroupEntry(ItemGroups.BUILDING_BLOCKS,toAdd);
     }
 }

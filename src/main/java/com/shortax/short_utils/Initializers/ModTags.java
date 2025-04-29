@@ -18,6 +18,7 @@ public class ModTags {
     public static class Items{
         public static final TagKey<Item> COL_RED_LAMP_ITEM = createTag("col_red_lamp");
         public static final TagKey<Item> CUSTOM_PRESS_PLATES = createTag("custom_pressure_plates");
+        public static final TagKey<Item> FAKE_REDSTONE_BLOCKS = createTag("fake_redstone_blocks");
 
         private static TagKey<Item> createTag(String name){
             return TagKey.of(RegistryKeys.ITEM, Identifier.of(ShortUtils.MOD_ID,name));

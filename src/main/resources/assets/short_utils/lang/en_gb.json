@@ -14,5 +14,9 @@
   "block.short_utils.cyan_redstone_lamp": "Cyan Redstone Lamp",
   "block.short_utils.lime_redstone_lamp": "Lime Redstone Lamp",
 
-  "block.short_utils.combined_block": "Combined Block"
+  "block.short_utils.combined_block": "Combined Block",
+
+  "block.short_utils.fake_oak_trapdoor": "Fake Oak Trapdoor",
+  "block.short_utils.fake_spruce_trapdoor": "Fake Spruce Trapdoor",
+  "block.short_utils.fake_iron_trapdoor": "Fake Iron Trapdoor"
 }

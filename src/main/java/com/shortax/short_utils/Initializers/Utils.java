@@ -22,9 +22,8 @@ import java.util.function.Function;
 
 public class Utils {
 
-    public static void registerItemGroupEntry(String LogType, String ModID, RegistryKey<ItemGroup> ItemGroup, Collection<ItemConvertible> entriesToAdd)
+    public static void registerItemGroupEntry(RegistryKey<ItemGroup> ItemGroup, Collection<ItemConvertible> entriesToAdd)
     {
-        ShortUtils.LOGGER.info("Registering {}: {}", LogType, ModID);
         ItemGroupEvents.modifyEntriesEvent(ItemGroup).register(entries -> {
             for(ItemConvertible ItemBlock : entriesToAdd)
             {
@@ -77,4 +76,9 @@ public class Utils {
     }
 
     public static Item getDye(String color){ return colRedstoneLamp.getDye(color); }
+
+    public static void registering(String LogType, String modID)
+    {
+        ShortUtils.LOGGER.info("Registering {}: {}", LogType, modID);
+    }
 }
