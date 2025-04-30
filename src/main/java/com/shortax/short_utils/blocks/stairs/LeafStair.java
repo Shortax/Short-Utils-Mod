@@ -7,6 +7,7 @@ import net.minecraft.block.StairsBlock;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.biome.FoliageColors;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ public class LeafStair extends StairsBlock {
 
     public final String ID;
     public final Block baseBlock;
+    public final int tint;
     private static final Map<String, Block> allLeaves = Map.of(
             "oak_leaves_stairs", Blocks.OAK_LEAVES,
             "spruce_leaves_stairs", Blocks.SPRUCE_LEAVES,
@@ -29,12 +31,25 @@ public class LeafStair extends StairsBlock {
             "flowering_azalea_leaves_stairs", Blocks.FLOWERING_AZALEA_LEAVES
     );
 
+    private static final Map<String, Integer> allTints = Map.of(
+            "oak_leaves_stairs", FoliageColors.DEFAULT,
+            "spruce_leaves_stairs", FoliageColors.SPRUCE,
+            "birch_leaves_stairs", FoliageColors.BIRCH,
+            "jungle_leaves_stairs", FoliageColors.DEFAULT,
+            "acacia_leaves_stairs", FoliageColors.DEFAULT,
+            "dark_oak_leaves_stairs", FoliageColors.DEFAULT,
+            "mangrove_leaves_stairs", FoliageColors.MANGROVE,
+            "cherry_leaves_stairs", -1,
+            "azalea_leaves_stairs", -1,
+            "flowering_azalea_leaves_stairs", -1
+    );
+
     public static List<LeafStair> get_leaves_stairs() {
         List<LeafStair> list = new ArrayList<>();
         for(String key : allLeaves.keySet())
         {
             Block b = allLeaves.get(key);
-            list.add(new LeafStair(b,copy(b).registryKey(getBlockReg(Identifier.of(key))),key));
+            list.add(new LeafStair(b,copy(b).registryKey(getBlockReg(Identifier.of(key))),key,allTints.get(key)));
         }
         return list;
     }
@@ -48,9 +63,10 @@ public class LeafStair extends StairsBlock {
         return AbstractBlock.Settings.copy(block);
     }
 
-    public LeafStair(Block baseBlock, Settings settings, String id) {
+    public LeafStair(Block baseBlock, Settings settings, String id, int tintColor) {
         super(baseBlock.getDefaultState(), settings);
         this.ID = id;
         this.baseBlock = baseBlock;
+        this.tint = tintColor;
     }
 }

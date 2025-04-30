@@ -35,16 +35,18 @@ public class ModModelProvider extends FabricModelProvider {
         //combined block entity
         //register_cube_test(ModBlockEntities.COMBINED_BLOCK,blockStateModelGenerator,DEBUG_TEXTURE);
 
+        //Fake Redstone Blocks
         registerFake_Trapdoor(ModBlocks.FAKE_OAK_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_OAK_TRAPDOOR.ORIGINAL));
         registerFake_Trapdoor(ModBlocks.FAKE_SPRUCE_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL));
         registerFake_Trapdoor(ModBlocks.FAKE_IRON_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL));
 
-        Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock)));
+        //Leaves Stairs
+        String mod = "leaves_";
+        Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock),mod,leafStair.tint));
     }
 
-    private void create_custom_stair(Block stair, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
+    private void create_custom_stair(Block stair, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture, String mod, int tintcolor)
     {
-        String mod = "leaves_";
 
         Identifier innerIdent = INNER_STAIRS(mod).upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
         Identifier straightIdent = STAIRS(mod).upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
@@ -55,7 +57,11 @@ public class ModModelProvider extends FabricModelProvider {
         WeightedVariant outerVariant = BlockStateModelGenerator.createWeightedVariant(outerIdent);
 
         blockStateModelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createStairsBlockState(stair,innerVariant,straightVariant,outerVariant));
-        blockStateModelGenerator.registerParentedItemModel(stair,straightIdent);
+
+        if(tintcolor == -1)
+            blockStateModelGenerator.registerParentedItemModel(stair,straightIdent);
+        else
+            blockStateModelGenerator.registerTintedItemModel(stair,straightIdent,ItemModels.constantTintSource(tintcolor));
     }
 
 
