@@ -67,7 +67,8 @@ public class ModRecipeProvider extends FabricRecipeProvider{
             }
 
             public void create_reversible_recipe(RecipeCategory category, ItemConvertible outputItem, ItemConvertible original, ItemConvertible converter, ItemConvertible reconverter){
-                String path = "reverse_" + outputItem.asItem().getName().getString().replace(" ", "_").toLowerCase();
+                String[] p = ("reverse_" + outputItem.asItem().getName().getString().replace(" ", "_").toLowerCase()).split("\\.");
+                String path = p[0].replace("block","") + p[2];
 
                 ShapelessRecipeJsonBuilder
                         .create(Registries.ITEM,category,outputItem)
