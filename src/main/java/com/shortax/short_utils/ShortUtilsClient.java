@@ -9,6 +9,5 @@ public class ShortUtilsClient implements ClientModInitializer {
     public void onInitializeClient() {
 
         ClientRendering.init();
-
     }
 }

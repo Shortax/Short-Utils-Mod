@@ -18,5 +18,16 @@
 
   "block.short_utils.fake_oak_trapdoor": "Fake Oak Trapdoor",
   "block.short_utils.fake_spruce_trapdoor": "Fake Spruce Trapdoor",
-  "block.short_utils.fake_iron_trapdoor": "Fake Iron Trapdoor"
+  "block.short_utils.fake_iron_trapdoor": "Fake Iron Trapdoor",
+
+  "block.short_utils.oak_leaf_stairs": "Oak Leaf Stairs",
+  "block.short_utils.spruce_leaf_stairs": "Spruce Leaf Stairs",
+  "block.short_utils.birch_leaf_stairs": "Birch Leaf Stairs",
+  "block.short_utils.jungle_leaf_stairs": "Jungle Leaf Stairs",
+  "block.short_utils.acacia_leaf_stairs": "Acacia Leaf Stairs",
+  "block.short_utils.dark_oak_leaf_stairs": "Dark Oak Leaf Stairs",
+  "block.short_utils.mangrove_leaf_stairs": "Mangrove Leaf Stairs",
+  "block.short_utils.cherry_leaf_stairs": "Cherry Leaf Stairs",
+  "block.short_utils.azalea_leaf_stairs": "Azalea Leaf Stairs",
+  "block.short_utils.flowering_azalea_leaf_stairs": "Flowering Azalea Leaf Stairs"
 }

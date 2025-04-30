@@ -2,8 +2,8 @@ package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.FakeRedstoneBlocks.FakeTrapdoor;
+import com.shortax.short_utils.blocks.stairs.LeafStair;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.util.Identifier;
@@ -21,6 +21,9 @@ public class ModBlocks {
     public static FakeTrapdoor FAKE_OAK_TRAPDOOR;
     public static FakeTrapdoor FAKE_IRON_TRAPDOOR;
     public static FakeTrapdoor FAKE_SPRUCE_TRAPDOOR;
+    public static List<LeafStair> LEAF_STAIRS;
+
+    public static List<Block> BlocksWithTransparency = new ArrayList<>();
 
     public static void init()
     {
@@ -43,6 +46,7 @@ public class ModBlocks {
         String FAKE_OAK_TRAPDOOR_ID = "fake_oak_trapdoor";
         FAKE_OAK_TRAPDOOR = (FakeTrapdoor) Utils.registerBlock_C(FAKE_OAK_TRAPDOOR_ID, FakeTrapdoor.OAK_TYPE::new,FakeTrapdoor.OAK_TYPE.DEFAULT_SETTINGS);
         blocksListBuilding.add(FAKE_OAK_TRAPDOOR);
+        BlocksWithTransparency.add(FAKE_OAK_TRAPDOOR);
 
         String FAKE_SPRUCE_TRAPDOOR_ID = "fake_spruce_trapdoor";
         FAKE_SPRUCE_TRAPDOOR = (FakeTrapdoor) Utils.registerBlock_C(FAKE_SPRUCE_TRAPDOOR_ID, FakeTrapdoor.SPRUCE_TYPE::new,FakeTrapdoor.SPRUCE_TYPE.DEFAULT_SETTINGS);
@@ -51,6 +55,15 @@ public class ModBlocks {
         String FAKE_IRON_TRAPDOOR_ID = "fake_iron_trapdoor";
         FAKE_IRON_TRAPDOOR = (FakeTrapdoor) Utils.registerBlock_C(FAKE_IRON_TRAPDOOR_ID, FakeTrapdoor.IRON_TYPE::new,FakeTrapdoor.IRON_TYPE.DEFAULT_SETTINGS);
         blocksListBuilding.add(FAKE_IRON_TRAPDOOR);
+        BlocksWithTransparency.add(FAKE_IRON_TRAPDOOR);
+
+        LEAF_STAIRS = new ArrayList<>();
+        for(LeafStair ls : LeafStair.get_leaves_stairs())
+        {
+            LEAF_STAIRS.add((LeafStair) Utils.registerBlock(ls.ID,ls,Identifier.of(ShortUtils.MOD_ID,ls.ID)));
+        }
+        BlocksWithTransparency.addAll(LEAF_STAIRS);
+        blocksListBuilding.addAll(LEAF_STAIRS);
 
 
         Utils.registering("Blocks",ShortUtils.MOD_ID);

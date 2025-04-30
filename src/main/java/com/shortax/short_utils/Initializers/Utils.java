@@ -44,15 +44,15 @@ public class Utils {
 
     public static Block registerBlock(String nameID, Block block, Identifier ident)
     {
-        RegistryKey<Item> keyItem = RegistryKey.of(RegistryKeys.ITEM, ident);
+        RegistryKey<Item> keyItem = RegistryKey.of(RegistryKeys.ITEM,ident);
         registerBlockItem(nameID,block,keyItem);
-        return Registry.register(Registries.BLOCK, Identifier.of(ShortUtils.MOD_ID,nameID),block);
+        return Registry.register(Registries.BLOCK, Identifier.of(ShortUtils.MOD_ID, nameID),block);
     }
 
     public static void registerBlockItem(String name, Block block,RegistryKey<Item> key)
     {
         Item.Settings settings = new Item.Settings().useBlockPrefixedTranslationKey().registryKey(key);
-        Registry.register(Registries.ITEM, Identifier.of(ShortUtils.MOD_ID,name),new BlockItem(block,settings));
+        Registry.register(Registries.ITEM, Identifier.of(ShortUtils.MOD_ID, name),new BlockItem(block,settings));
     }
 
     public static <T> void applyToEach(Collection<T> list, Consumer<T> action) {
@@ -72,7 +72,7 @@ public class Utils {
     @SuppressWarnings("unused")
     public static Item registerItem(String name, Item item)
     {
-        return Registry.register(Registries.ITEM, Identifier.of(ShortUtils.MOD_ID,name),item);
+        return Registry.register(Registries.ITEM, Identifier.of(ShortUtils.MOD_ID, name),item);
     }
 
     public static Item getDye(String color){ return colRedstoneLamp.getDye(color); }

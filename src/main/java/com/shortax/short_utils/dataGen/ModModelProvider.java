@@ -36,6 +36,21 @@ public class ModModelProvider extends FabricModelProvider {
         registerFake_Trapdoor(ModBlocks.FAKE_SPRUCE_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL));
         registerFake_Trapdoor(ModBlocks.FAKE_IRON_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL));
 
+        Utils.applyToEach(ModBlocks.LEAF_STAIRS,leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock)));
+    }
+
+    private void create_custom_stair(Block stair, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
+    {
+        Identifier innerIdent = Models.INNER_STAIRS.upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
+        Identifier straightIdent = Models.STAIRS.upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
+        Identifier outerIdent = Models.OUTER_STAIRS.upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
+
+        WeightedVariant innerVariant = BlockStateModelGenerator.createWeightedVariant(innerIdent);
+        WeightedVariant straightVariant = BlockStateModelGenerator.createWeightedVariant(straightIdent);
+        WeightedVariant outerVariant = BlockStateModelGenerator.createWeightedVariant(outerIdent);
+
+        blockStateModelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createStairsBlockState(stair,innerVariant,straightVariant,outerVariant));
+        blockStateModelGenerator.registerParentedItemModel(stair,straightIdent);
     }
 
     private void registerFake_Trapdoor(FakeTrapdoor block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)

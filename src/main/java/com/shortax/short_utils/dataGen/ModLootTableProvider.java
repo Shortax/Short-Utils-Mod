@@ -18,10 +18,12 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         addDrop(ModBlocks.OBSID_PRESSURE_PLATE);
-        addDrop(ModBlockEntities.COMBINED_BLOCK);
         addDrop(ModBlocks.FAKE_OAK_TRAPDOOR);
         addDrop(ModBlocks.FAKE_SPRUCE_TRAPDOOR);
         addDrop(ModBlocks.FAKE_IRON_TRAPDOOR);
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(),this::addDrop);
+        Utils.applyToEach(ModBlocks.LEAF_STAIRS,this::addDrop);
+
+        addDrop(ModBlockEntities.COMBINED_BLOCK);
     }
 }

@@ -18,5 +18,16 @@
   
   "block.short_utils.fake_oak_trapdoor": "Falsche Eichenholzfalltür",
   "block.short_utils.fake_spruce_trapdoor": "Falsche Fichtenholzfalltür",
-  "block.short_utils.fake_iron_trapdoor": "Falsche Eisenfalltür"
+  "block.short_utils.fake_iron_trapdoor": "Falsche Eisenfalltür",
+
+  "block.short_utils.oak_leaf_stairs": "Eichenlaubtreppe",
+  "block.short_utils.spruce_leaf_stairs": "Fichtenlaubtreppe",
+  "block.short_utils.birch_leaf_stairs": "Birkenlaubtreppe",
+  "block.short_utils.jungle_leaf_stairs": "Tropenlaubtreppe",
+  "block.short_utils.acacia_leaf_stairs": "Akazienlaubtreppe",
+  "block.short_utils.dark_oak_leaf_stairs": "Schwarzeichenlaubtreppe",
+  "block.short_utils.mangrove_leaf_stairs": "Mangrovenlaubtreppe",
+  "block.short_utils.cherry_leaf_stairs": "Kirschbaumlaubtreppe",
+  "block.short_utils.azalea_leaf_stairs": "Azaleenlaubtreppe",
+  "block.short_utils.flowering_azalea_leaf_stairs": "Blühende Azaleenlaubtreppe"
 }

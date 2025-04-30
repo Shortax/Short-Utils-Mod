@@ -9,6 +9,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.block.Blocks;
 import net.minecraft.data.recipe.RecipeExporter;
 import net.minecraft.data.recipe.RecipeGenerator;
+import net.minecraft.data.recipe.ShapedRecipeJsonBuilder;
 import net.minecraft.data.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.Items;
@@ -53,6 +54,16 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                 create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_SPRUCE_TRAPDOOR,ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
                 create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_IRON_TRAPDOOR,ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
 
+                Utils.applyToEach(ModBlocks.LEAF_STAIRS,leafStair ->
+                        ShapedRecipeJsonBuilder
+                                .create(Registries.ITEM,RecipeCategory.BUILDING_BLOCKS, leafStair , 4)
+                                .input('#', leafStair.baseBlock)
+                                .pattern("#  ")
+                                .pattern("## ")
+                                .pattern("###")
+                                .criterion(hasItem(leafStair.baseBlock.asItem()),conditionsFromItem(leafStair.baseBlock))
+                                .offerTo(exporter)
+                );
             }
 
             public void create_reversible_recipe(RecipeCategory category, ItemConvertible outputItem, ItemConvertible original, ItemConvertible converter, ItemConvertible reconverter){
@@ -78,7 +89,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
 
     @Override
     public String getName() {
-        return "Recipes";
+        return "Recipes CraftingRecips";
     }
 }
 
