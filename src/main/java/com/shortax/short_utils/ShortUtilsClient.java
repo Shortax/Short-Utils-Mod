@@ -1,6 +1,6 @@
 package com.shortax.short_utils;
 
-import com.shortax.short_utils.Initializers.ClientRendering;
+import com.shortax.short_utils.ClientHandling.ClientRendering;
 import net.fabricmc.api.ClientModInitializer;
 
 public class ShortUtilsClient implements ClientModInitializer {

@@ -22,7 +22,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.FAKE_SPRUCE_TRAPDOOR);
         addDrop(ModBlocks.FAKE_IRON_TRAPDOOR);
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(),this::addDrop);
-        Utils.applyToEach(ModBlocks.LEAF_STAIRS,this::addDrop);
+        Utils.applyToEach(ModBlocks.LEAVES_STAIRS,this::addDrop);
 
         addDrop(ModBlockEntities.COMBINED_BLOCK);
     }

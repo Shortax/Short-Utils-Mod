@@ -21,7 +21,7 @@ public class ModBlocks {
     public static FakeTrapdoor FAKE_OAK_TRAPDOOR;
     public static FakeTrapdoor FAKE_IRON_TRAPDOOR;
     public static FakeTrapdoor FAKE_SPRUCE_TRAPDOOR;
-    public static List<LeafStair> LEAF_STAIRS;
+    public static List<LeafStair> LEAVES_STAIRS;
 
     public static List<Block> BlocksWithTransparency = new ArrayList<>();
 
@@ -57,13 +57,13 @@ public class ModBlocks {
         blocksListBuilding.add(FAKE_IRON_TRAPDOOR);
         BlocksWithTransparency.add(FAKE_IRON_TRAPDOOR);
 
-        LEAF_STAIRS = new ArrayList<>();
+        LEAVES_STAIRS = new ArrayList<>();
         for(LeafStair ls : LeafStair.get_leaves_stairs())
         {
-            LEAF_STAIRS.add((LeafStair) Utils.registerBlock(ls.ID,ls,Identifier.of(ShortUtils.MOD_ID,ls.ID)));
+            LEAVES_STAIRS.add((LeafStair) Utils.registerBlock(ls.ID,ls,Identifier.of(ShortUtils.MOD_ID,ls.ID)));
         }
-        BlocksWithTransparency.addAll(LEAF_STAIRS);
-        blocksListBuilding.addAll(LEAF_STAIRS);
+        BlocksWithTransparency.addAll(LEAVES_STAIRS);
+        blocksListBuilding.addAll(LEAVES_STAIRS);
 
 
         Utils.registering("Blocks",ShortUtils.MOD_ID);

@@ -2,6 +2,7 @@ package com.shortax.short_utils.dataGen;
 
 import com.shortax.short_utils.Initializers.ModBlocks;
 import com.shortax.short_utils.Initializers.Utils;
+import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.FakeRedstoneBlocks.FakeTrapdoor;
 import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -10,6 +11,8 @@ import net.minecraft.client.data.*;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+
+import java.util.Optional;
 
 public class ModModelProvider extends FabricModelProvider {
 
@@ -36,14 +39,16 @@ public class ModModelProvider extends FabricModelProvider {
         registerFake_Trapdoor(ModBlocks.FAKE_SPRUCE_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL));
         registerFake_Trapdoor(ModBlocks.FAKE_IRON_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL));
 
-        Utils.applyToEach(ModBlocks.LEAF_STAIRS,leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock)));
+        Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock)));
     }
 
     private void create_custom_stair(Block stair, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
     {
-        Identifier innerIdent = Models.INNER_STAIRS.upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
-        Identifier straightIdent = Models.STAIRS.upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
-        Identifier outerIdent = Models.OUTER_STAIRS.upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
+        String mod = "leaves_";
+
+        Identifier innerIdent = INNER_STAIRS(mod).upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
+        Identifier straightIdent = STAIRS(mod).upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
+        Identifier outerIdent = OUTER_STAIRS(mod).upload(stair,parentTexture,blockStateModelGenerator.modelCollector);
 
         WeightedVariant innerVariant = BlockStateModelGenerator.createWeightedVariant(innerIdent);
         WeightedVariant straightVariant = BlockStateModelGenerator.createWeightedVariant(straightIdent);
@@ -52,6 +57,8 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.blockStateCollector.accept(BlockStateModelGenerator.createStairsBlockState(stair,innerVariant,straightVariant,outerVariant));
         blockStateModelGenerator.registerParentedItemModel(stair,straightIdent);
     }
+
+
 
     private void registerFake_Trapdoor(FakeTrapdoor block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
     {
@@ -97,6 +104,30 @@ public class ModModelProvider extends FabricModelProvider {
                         weightedVariant2,
                         weightedVariant
                 )));
+    }
+
+    private static Model STAIRS(String mod)
+    {
+        return block(mod+"stairs", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
+    }
+
+    private static Model INNER_STAIRS(String mod)
+    {
+        return block(mod+"inner_stairs", "_inner", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
+    }
+
+    private static Model OUTER_STAIRS(String mod)
+    {
+        return block(mod+"outer_stairs", "_outer", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static Model block(String parent, TextureKey... requiredTextureKeys) {
+        return new Model(Optional.of(Identifier.of(ShortUtils.MOD_ID, "block/" + parent)), Optional.empty(), requiredTextureKeys);
+    }
+
+    private static Model block(String parent, String variant, TextureKey... requiredTextureKeys) {
+        return new Model(Optional.of(Identifier.of(ShortUtils.MOD_ID, "block/" + parent)), Optional.of(variant), requiredTextureKeys);
     }
 
     @Override

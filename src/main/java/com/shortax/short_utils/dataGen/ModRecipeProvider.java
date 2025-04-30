@@ -54,7 +54,7 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                 create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_SPRUCE_TRAPDOOR,ModBlocks.FAKE_SPRUCE_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
                 create_reversible_recipe(RecipeCategory.REDSTONE,ModBlocks.FAKE_IRON_TRAPDOOR,ModBlocks.FAKE_IRON_TRAPDOOR.ORIGINAL,Items.PAPER,Items.REDSTONE);
 
-                Utils.applyToEach(ModBlocks.LEAF_STAIRS,leafStair ->
+                Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair ->
                         ShapedRecipeJsonBuilder
                                 .create(Registries.ITEM,RecipeCategory.BUILDING_BLOCKS, leafStair , 4)
                                 .input('#', leafStair.baseBlock)
