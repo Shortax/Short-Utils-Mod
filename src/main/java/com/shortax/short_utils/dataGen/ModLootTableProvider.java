@@ -5,6 +5,7 @@ import com.shortax.short_utils.Initializers.ModBlocks;
 import com.shortax.short_utils.Initializers.Utils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
+import net.minecraft.block.Block;
 import net.minecraft.registry.RegistryWrapper;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,8 +23,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         addDrop(ModBlocks.FAKE_SPRUCE_TRAPDOOR);
         addDrop(ModBlocks.FAKE_IRON_TRAPDOOR);
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(),this::addDrop);
-        Utils.applyToEach(ModBlocks.LEAVES_STAIRS,this::addDrop);
-
+        Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> this.addDrop(leafStair,dropsWithSilkTouchOrShears(leafStair)));
         addDrop(ModBlockEntities.COMBINED_BLOCK);
     }
 }

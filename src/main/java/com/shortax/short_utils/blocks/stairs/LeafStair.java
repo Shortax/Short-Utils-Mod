@@ -1,11 +1,10 @@
 package com.shortax.short_utils.blocks.stairs;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.StairsBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.biome.FoliageColors;
 
@@ -18,6 +17,16 @@ public class LeafStair extends StairsBlock {
     public final String ID;
     public final Block baseBlock;
     public final int tint;
+    private static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.create()
+            .pistonBehavior(PistonBehavior.NORMAL)
+            .burnable().sounds(BlockSoundGroup.GRASS)
+            .suffocates(Blocks::never)
+            .strength(0.2F)
+            .mapColor(MapColor.DARK_GREEN)
+            .allowsSpawning(Blocks::never)
+            .nonOpaque()
+            .blockVision(Blocks::never)
+            .solidBlock(Blocks::never);
     private static final Map<String, Block> allLeaves = Map.of(
             "oak_leaves_stairs", Blocks.OAK_LEAVES,
             "spruce_leaves_stairs", Blocks.SPRUCE_LEAVES,
@@ -49,7 +58,7 @@ public class LeafStair extends StairsBlock {
         for(String key : allLeaves.keySet())
         {
             Block b = allLeaves.get(key);
-            list.add(new LeafStair(b,copy(b).registryKey(getBlockReg(Identifier.of(key))),key,allTints.get(key)));
+            list.add(new LeafStair(b,DEFAULT_SETTINGS.registryKey(getBlockReg(Identifier.of(key))),key,allTints.get(key)));
         }
         return list;
     }
