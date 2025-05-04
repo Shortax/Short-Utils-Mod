@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.screen.ScreenHandler;
@@ -17,7 +16,6 @@ public class CombinerScreenHandler extends ScreenHandler {
     private final Inventory inventory = this.createInputInventory(3);
     private boolean combine_success;
     private static final int[] inputIndex = {0,1};
-    private static final int outputIndex = 2;
 
     public CombinerScreenHandler(int syncId, PlayerInventory playerInventory) {
         this(syncId, playerInventory, ScreenHandlerContext.create(playerInventory.player.getWorld(),playerInventory.player.getBlockPos()));
@@ -54,24 +52,44 @@ public class CombinerScreenHandler extends ScreenHandler {
         super.onContentChanged(inventory);
         //String s = String.format(" - Left Item: %s | Right Item: %s",inventory.getStack(0).toString(),inventory.getStack(1).toString());
         //System.out.println(inventory.size() + s);
-        Item item1 = inventory.getStack(0).getItem();
-        Item item2 = inventory.getStack(1).getItem();
+        ItemStack input1 = inventory.getStack(0);
+        ItemStack input2 = inventory.getStack(1);
+        ItemStack output = inventory.getStack(2);
 
-        if(!this.combine_success)
+        if(emptyItemStack(input1) || emptyItemStack(input2))
         {
-            if(item1.equals(Items.SPRUCE_LOG) && item2.equals(Items.SPRUCE_LOG))
+            if(!emptyItemStack(output))
+                inventory.setStack(2,ItemStack.EMPTY);
+            this.combine_success = false;
+        } else if (validRecipeTEST(input1,input2)) {
+            if(emptyItemStack(output) && this.combine_success)
             {
-                this.combine_success = true;
-                inventory.setStack(2,new ItemStack(Items.SPRUCE_LOG,2));
-            }
-        }
-        else{
-            if(inventory.getStack(2).getItem().equals(Items.AIR))
-            {
-                System.out.println("GONE");
+                crafted(inventory,input1,input2);
                 this.combine_success = false;
             }
+            else if(emptyItemStack(output)){
+                inventory.setStack(2,new ItemStack(Items.SPRUCE_LOG,2));
+                this.combine_success = true;
+            }
         }
+    }
+
+    private boolean emptyItemStack(ItemStack input)
+    {
+        return input.getItem().equals(Items.AIR) || input.getCount() == 0;
+    }
+
+    private boolean validRecipeTEST(ItemStack input1, ItemStack input2)
+    {
+        return input1.getItem().equals(Items.SPRUCE_LOG) || input2.getItem().equals(Items.SPRUCE_LOG);
+    }
+
+    private void crafted(Inventory inventory, ItemStack input1, ItemStack input2)
+    {
+        int c1 = input1.getCount();
+        int c2 = input1.getCount();
+        inventory.setStack(0,new ItemStack(input1.getItem(),c1-1));
+        inventory.setStack(1,new ItemStack(input2.getItem(),c2-1));
     }
 
     @Override
@@ -103,6 +121,10 @@ public class CombinerScreenHandler extends ScreenHandler {
             if(this.insertItem(moved_slot.getStack(),start,end,false))
             {
                 itemStack = moved_slot.getStack();
+                if(slotidx == outputIDX)
+                {
+                    crafted(inventory,inventory.getStack(0),inventory.getStack(1));
+                }
             }
         }
         return itemStack;
@@ -143,14 +165,19 @@ public class CombinerScreenHandler extends ScreenHandler {
 
 class Combiner_Slot extends Slot
 {
-    private final boolean output;
+    private boolean lock;
     public Combiner_Slot(Inventory inventory, int index, int x, int y, boolean output) {
         super(inventory, index, x, y);
-        this.output = output;
+        this.lock = output;
+    }
+
+    public void switch_lockSlot()
+    {
+        lock = !lock;
     }
 
     @Override
     public boolean canInsert(ItemStack stack){
-        return !output;
+        return !lock;
     }
 }
