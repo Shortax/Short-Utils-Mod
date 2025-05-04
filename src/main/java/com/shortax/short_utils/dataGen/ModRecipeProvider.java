@@ -64,6 +64,19 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                                 .criterion(hasItem(leafStair.baseBlock.asItem()),conditionsFromItem(leafStair.baseBlock))
                                 .offerTo(exporter)
                 );
+
+                ShapedRecipeJsonBuilder
+                        .create(Registries.ITEM,RecipeCategory.MISC,ModBlocks.COMBINER_BLOCK,1)
+                        .input('#',Items.IRON_INGOT)
+                        .input('S',Items.STICK)
+                        .input('B', Items.BUCKET)
+                        .input('D',Items.DIAMOND)
+                        .input('L',Items.IRON_BLOCK)
+                        .pattern("#S#")
+                        .pattern("BDB")
+                        .pattern("#L#")
+                        .criterion(hasItem(Items.DIAMOND),conditionsFromItem(Items.DIAMOND))
+                        .offerTo(exporter);
             }
 
             public void create_reversible_recipe(RecipeCategory category, ItemConvertible outputItem, ItemConvertible original, ItemConvertible converter, ItemConvertible reconverter){

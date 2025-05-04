@@ -29,5 +29,7 @@
   "block.short_utils.mangrove_leaves_stairs": "Mangrovenlaubtreppe",
   "block.short_utils.cherry_leaves_stairs": "Kirschbaumlaubtreppe",
   "block.short_utils.azalea_leaves_stairs": "Azaleenlaubtreppe",
-  "block.short_utils.flowering_azalea_leaves_stairs": "Blühende Azaleenlaubtreppe"
+  "block.short_utils.flowering_azalea_leaves_stairs": "Blühende Azaleenlaubtreppe",
+
+  "block.short_utils.combiner_block": "Kombinierer"
 }

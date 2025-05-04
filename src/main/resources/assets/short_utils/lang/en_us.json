@@ -29,5 +29,7 @@
   "block.short_utils.mangrove_leaves_stairs": "Mangrove Leaves Stairs",
   "block.short_utils.cherry_leaves_stairs": "Cherry Leaves Stairs",
   "block.short_utils.azalea_leaves_stairs": "Azalea Leaves Stairs",
-  "block.short_utils.flowering_azalea_leaves_stairs": "Flowering Azalea Leaves Stairs"
+  "block.short_utils.flowering_azalea_leaves_stairs": "Flowering Azalea Leaves Stairs",
+
+  "block.short_utils.combiner_block": "Combiner"
 }

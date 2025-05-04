@@ -1,14 +1,9 @@
 package com.shortax.short_utils;
 
-import com.shortax.short_utils.Initializers.ModBlockEntities;
-import com.shortax.short_utils.Initializers.ModItems;
-import com.shortax.short_utils.blockentities.ModBlockEntityTypes;
+import com.shortax.short_utils.Initializers.*;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-
-import com.shortax.short_utils.Initializers.ModBlocks;
 
 public class ShortUtils implements ModInitializer {
 	public static final String MOD_ID = "short_utils";
@@ -25,6 +20,7 @@ public class ShortUtils implements ModInitializer {
 		// Proceed with mild caution.
 
 		ModItems.init();
+		ModScreenHandlers.init();
 		ModBlocks.init();
 		ModBlockEntities.init();
 		ModBlockEntityTypes.init();

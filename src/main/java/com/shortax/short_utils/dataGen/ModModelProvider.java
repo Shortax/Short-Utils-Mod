@@ -8,12 +8,15 @@ import net.fabricmc.fabric.api.client.datagen.v1.provider.FabricModelProvider;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.minecraft.block.Block;
 import net.minecraft.client.data.*;
+import net.minecraft.client.render.model.json.ModelVariantOperator;
 import net.minecraft.client.render.model.json.WeightedVariant;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 
 import java.util.Optional;
 
+@SuppressWarnings("SameParameterValue")
 public class ModModelProvider extends FabricModelProvider {
 
     public ModModelProvider(FabricDataOutput output) {
@@ -23,7 +26,6 @@ public class ModModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {
         TextureMap obsidianTexture = TextureMap.all(Identifier.ofVanilla("block/obsidian"));
-        //TextureMap DEBUG_TEXTURE = TextureMap.all(Identifier.ofVanilla("block/black_concrete"));
 
 
         //Obsidian Pressure Plate
@@ -32,8 +34,8 @@ public class ModModelProvider extends FabricModelProvider {
         //colored Lamps
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(), block -> registerCustomLamp(block,blockStateModelGenerator));
 
-        //combined block entity
-        //register_cube_test(ModBlockEntities.COMBINED_BLOCK,blockStateModelGenerator,DEBUG_TEXTURE);
+        //combiner block
+        register_multi_face_block_custom(ModBlocks.COMBINER_BLOCK,blockStateModelGenerator,false,true,true);
 
         //Fake Redstone Blocks
         registerFake_Trapdoor(ModBlocks.FAKE_OAK_TRAPDOOR,blockStateModelGenerator,TextureMap.all(ModBlocks.FAKE_OAK_TRAPDOOR.ORIGINAL));
@@ -43,6 +45,7 @@ public class ModModelProvider extends FabricModelProvider {
         //Leaves Stairs
         String mod = "leaves_";
         Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock),mod,leafStair.tint));
+
     }
 
     private void create_custom_stair(Block stair, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture, String mod, int tintcolor)
@@ -80,13 +83,6 @@ public class ModModelProvider extends FabricModelProvider {
         blockStateModelGenerator.registerParentedItemModel(block, identifier);
     }
 
-    @SuppressWarnings("unused")
-    private void register_cube_test(Block block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture)
-    {
-        Identifier parent = Models.CUBE_ALL.upload(block,parentTexture,blockStateModelGenerator.modelCollector);
-        blockStateModelGenerator.registerParentedItemModel(block,parent);
-    }
-
     private void register_plate(Block block, BlockStateModelGenerator blockStateModelGenerator, TextureMap parentTexture )
     {
         Identifier PlateDownID = Models.PRESSURE_PLATE_DOWN.upload(block,parentTexture,blockStateModelGenerator.modelCollector);
@@ -112,6 +108,44 @@ public class ModModelProvider extends FabricModelProvider {
                 )));
     }
 
+    @SuppressWarnings("unused")
+    private static void register_multi_face_block_custom(Block block, BlockStateModelGenerator blockStateModelGenerator, boolean customParticle, boolean customFront, boolean customTop){
+        String front = customFront ?        "_front" : "_side";
+        String particle = customParticle ?  "_particle" : "_side";
+        String top = customTop ?            "_top" :   "_side";
+        String side =                       "_side";
+        String bottom =                     "_bottom";
+
+        register_multi_face_block(block, blockStateModelGenerator,particle,bottom,top,front,side);
+
+    }
+
+    /* KEY          ORIGINAL        INTERPRETATION
+     * PARTICLE:    "_particle"
+     * DOWN:        "_down"         //bottom
+     * UP:          "_up"           //top
+     * NORTH:       "_north"        //front
+     * SOUTH:       "_south"        //south side
+     * EAST:        "_east"         //east side
+     * WEST:        "_west"         //west side
+     */
+    private static void register_multi_face_block(Block block, BlockStateModelGenerator blockStateModelGenerator, String... suffixes) {
+        TextureMap texture = new TextureMap()
+                .put(TextureKey.PARTICLE, TextureMap.getSubId(block, suffixes[0]))
+                .put(TextureKey.BOTTOM, TextureMap.getSubId(block, suffixes[1]))
+                .put(TextureKey.TOP, TextureMap.getSubId(block, suffixes[2]))
+                .put(TextureKey.FRONT, TextureMap.getSubId(block, suffixes[3]))
+                .put(TextureKey.SIDE,TextureMap.getSubId(block,suffixes[4]));
+
+        WeightedVariant weightedVariant = BlockStateModelGenerator.createWeightedVariant(
+                Models.ORIENTABLE.upload(block, texture, blockStateModelGenerator.modelCollector)
+        );
+        blockStateModelGenerator.blockStateCollector.accept(
+                VariantsBlockModelDefinitionCreator.of(block, weightedVariant)
+                        .coordinate(NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS())
+        );
+    }
+
     private static Model STAIRS(String mod)
     {
         return block(mod+"stairs", TextureKey.BOTTOM, TextureKey.TOP, TextureKey.SIDE);
@@ -135,6 +169,18 @@ public class ModModelProvider extends FabricModelProvider {
     private static Model block(String parent, String variant, TextureKey... requiredTextureKeys) {
         return new Model(Optional.of(Identifier.of(ShortUtils.MOD_ID, "block/" + parent)), Optional.of(variant), requiredTextureKeys);
     }
+
+    private static BlockStateVariantMap<ModelVariantOperator> NORTH_DEFAULT_HORIZONTAL_ROTATION_OPERATIONS()
+    {
+        return BlockStateVariantMap.operations(
+                        Properties.HORIZONTAL_FACING
+                )
+                .register(Direction.EAST, BlockStateModelGenerator.ROTATE_Y_90)
+                .register(Direction.SOUTH, BlockStateModelGenerator.ROTATE_Y_180)
+                .register(Direction.WEST, BlockStateModelGenerator.ROTATE_Y_270)
+                .register(Direction.NORTH, BlockStateModelGenerator.NO_OP);
+    }
+
 
     @Override
     public void generateItemModels(ItemModelGenerator itemModelGenerator) {
