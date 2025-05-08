@@ -1,4 +1,4 @@
-package com.shortax.short_utils.blockentities.BuildProjector.ProjectorScreen;
+package com.shortax.short_utils.blocks.blockentities.BuildProjector.ProjectorScreen;
 
 import com.shortax.short_utils.Initializers.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
@@ -7,7 +7,7 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.*;
 import net.minecraft.util.math.BlockPos;
-import com.shortax.short_utils.blockentities.BuildProjector.build_projector_Entity;
+import com.shortax.short_utils.blocks.blockentities.BuildProjector.build_projector_Entity;
 
 public class ProjectorScreenHandler extends ScreenHandler {
 

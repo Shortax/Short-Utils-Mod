@@ -1,4 +1,4 @@
-package com.shortax.short_utils.blockentities.mixedBlocks;
+package com.shortax.short_utils.blocks.blockentities.mixedBlocks;
 
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;

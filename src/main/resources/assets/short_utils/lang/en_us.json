@@ -1,4 +1,13 @@
 {
+  "ui.short_utils.apply" : "Apply",
+  "ui.short_utils.apply_text" : "Applies settings",
+  "ui.short_utils.apply_announce" : "Applied!",
+
+  "ui.short_utils.default" : "Default",
+  "ui.short_utils.default_text" : "Reset values to default",
+  "ui.short_utils.default_announce" : "Reset!",
+
+
   "block.short_utils.obsid_pressure_plate": "Obsidian Pressure Plate",
 
   "block.short_utils.white_redstone_lamp": "White Redstone Lamp",

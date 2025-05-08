@@ -1,4 +1,13 @@
 {
+  "ui.short_utils.apply" : "Anwenden",
+  "ui.short_utils.apply_text" : "Einstellungen anwenden",
+  "ui.short_utils.apply_announce" : "Angewendet!",
+
+  "ui.short_utils.default" : "Standard",
+  "ui.short_utils.default_text" : "Auf Standardwerte zurücksetzen",
+  "ui.short_utils.default_announce" : "Zurückgesetzt!",
+
+
   "block.short_utils.obsid_pressure_plate": "Obsidian Druckplatte",
 
   "block.short_utils.white_redstone_lamp": "Weiße Redstone-Lampe",

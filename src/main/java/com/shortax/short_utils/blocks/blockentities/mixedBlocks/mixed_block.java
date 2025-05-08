@@ -1,4 +1,4 @@
-package com.shortax.short_utils.blockentities.mixedBlocks;
+package com.shortax.short_utils.blocks.blockentities.mixedBlocks;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.block.*;
