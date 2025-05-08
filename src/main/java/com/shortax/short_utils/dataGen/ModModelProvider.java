@@ -1,6 +1,7 @@
 package com.shortax.short_utils.dataGen;
 
 import com.shortax.short_utils.Initializers.ModBlocks;
+import com.shortax.short_utils.Initializers.ModBlocksWithEntities;
 import com.shortax.short_utils.Initializers.Utils;
 import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.FakeRedstoneBlocks.FakeTrapdoor;
@@ -45,6 +46,9 @@ public class ModModelProvider extends FabricModelProvider {
         //Leaves Stairs
         String mod = "leaves_";
         Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock),mod,leafStair.tint));
+
+        //Projector Block
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocksWithEntities.BUILD_PROJECTOR);
 
     }
 

@@ -1,7 +1,7 @@
 package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
-import com.shortax.short_utils.blocks.blockentities.BuildProjector.ProjectorScreen.ProjectorScreenHandler;
+import com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen.ProjectorScreenHandler;
 import com.shortax.short_utils.blocks.Crafters.Combiner.CombinerScreen.CombinerScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerType;
 import net.minecraft.registry.Registries;

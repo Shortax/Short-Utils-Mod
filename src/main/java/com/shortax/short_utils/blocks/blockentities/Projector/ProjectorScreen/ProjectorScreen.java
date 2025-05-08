@@ -1,4 +1,4 @@
-package com.shortax.short_utils.blocks.blockentities.BuildProjector.ProjectorScreen;
+package com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen;
 
 import com.shortax.short_utils.ShortUtils;
 import net.fabricmc.api.EnvType;
@@ -17,7 +17,7 @@ import static com.shortax.short_utils.helpers.mcMath.RGB_TO_INT;
 @Environment(EnvType.CLIENT)
 public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
 
-    private static final Text TITLE = Text.of("Projector");
+    private static final Text TITLE = Text.translatable("block.short_utils.projector_block");
     private static final Identifier GUI_TEXTURE = Identifier.of(ShortUtils.MOD_ID,"textures/gui/utilities/projector_gui.png");
     public static final int TITLE_COLOR_INT = RGB_TO_INT(127, 127, 127);
     public static final int GREEN_COLOR_INT= RGB_TO_INT(20,200,30);

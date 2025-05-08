@@ -46,6 +46,6 @@
   "tag.item.short_utils.fake_redstone_blocks": "Fake Redstone Blocks",
   "tag.block.short_utils.not_combineable_blocks": "Not Combineable Blocks",
 
-  "block.short_utils.build_projector": "Projector"
+  "block.short_utils.projector_block": "Projector"
 
 }

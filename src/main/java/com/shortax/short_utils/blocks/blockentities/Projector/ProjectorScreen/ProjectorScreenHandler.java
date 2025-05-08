@@ -1,4 +1,4 @@
-package com.shortax.short_utils.blocks.blockentities.BuildProjector.ProjectorScreen;
+package com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen;
 
 import com.shortax.short_utils.Initializers.ModScreenHandlers;
 import net.minecraft.block.entity.BlockEntity;
@@ -7,13 +7,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.*;
 import net.minecraft.util.math.BlockPos;
-import com.shortax.short_utils.blocks.blockentities.BuildProjector.build_projector_Entity;
+import com.shortax.short_utils.blocks.blockentities.Projector.projector_Entity;
 
 public class ProjectorScreenHandler extends ScreenHandler {
 
     @SuppressWarnings({"unused", "FieldCanBeLocal"})
     private final PropertyDelegate propertyDelegate;
-    public final build_projector_Entity blockEntity;
+    public final projector_Entity blockEntity;
 
     public ProjectorScreenHandler(int syncId, PlayerInventory inventory, BlockPos pos)
     {
@@ -23,7 +23,7 @@ public class ProjectorScreenHandler extends ScreenHandler {
     public ProjectorScreenHandler(int syncId, PlayerInventory playerInventory, BlockEntity blockEntity, PropertyDelegate arrayPropertyDelegate) {
         super(ModScreenHandlers.PROJECTOR_SCREEN_HANDLER, syncId);
 
-        this.blockEntity = (build_projector_Entity) blockEntity;
+        this.blockEntity = (projector_Entity) blockEntity;
         this.propertyDelegate = arrayPropertyDelegate;
     }
 

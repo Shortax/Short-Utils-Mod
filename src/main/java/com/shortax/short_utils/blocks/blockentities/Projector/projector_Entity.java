@@ -1,7 +1,7 @@
-package com.shortax.short_utils.blocks.blockentities.BuildProjector;
+package com.shortax.short_utils.blocks.blockentities.Projector;
 
 import com.shortax.short_utils.Initializers.ModBlockEntityTypes;
-import com.shortax.short_utils.blocks.blockentities.BuildProjector.ProjectorScreen.ProjectorScreenHandler;
+import com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen.ProjectorScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
@@ -19,7 +19,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.Nullable;
 
-public class build_projector_Entity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
+public class projector_Entity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
 
     protected final PropertyDelegate propertyDelegate;
 
@@ -30,18 +30,18 @@ public class build_projector_Entity extends BlockEntity implements ExtendedScree
     private int MaxRadius = 51;
     private int thicknessMax = MaxRadius-1;
 
-    public build_projector_Entity(BlockPos pos, BlockState state) {
+    public projector_Entity(BlockPos pos, BlockState state) {
         super(ModBlockEntityTypes.BUILD_PROJECTOR_TYPE, pos, state);
         this.propertyDelegate = new PropertyDelegate() {
             @Override
             public int get(int index) {
                 return switch (index){
-                    case 0 -> build_projector_Entity.this.radius;
-                    case 1 -> build_projector_Entity.this.thickness;
-                    case 2 -> build_projector_Entity.this.transparency;
+                    case 0 -> projector_Entity.this.radius;
+                    case 1 -> projector_Entity.this.thickness;
+                    case 2 -> projector_Entity.this.transparency;
 
-                    case 3 -> build_projector_Entity.this.thicknessMax;
-                    case 4 -> build_projector_Entity.this.MaxRadius;
+                    case 3 -> projector_Entity.this.thicknessMax;
+                    case 4 -> projector_Entity.this.MaxRadius;
                     default -> 0;
                 };
             }
@@ -49,12 +49,12 @@ public class build_projector_Entity extends BlockEntity implements ExtendedScree
             @Override
             public void set(int index, int value) {
                 switch (index){
-                    case 0 -> build_projector_Entity.this.radius = value;
-                    case 1 -> build_projector_Entity.this.thickness = value;
-                    case 2 -> build_projector_Entity.this.transparency = value;
+                    case 0 -> projector_Entity.this.radius = value;
+                    case 1 -> projector_Entity.this.thickness = value;
+                    case 2 -> projector_Entity.this.transparency = value;
 
-                    case 3 -> build_projector_Entity.this.thicknessMax = value;
-                    case 4 -> build_projector_Entity.this.MaxRadius = value;
+                    case 3 -> projector_Entity.this.thicknessMax = value;
+                    case 4 -> projector_Entity.this.MaxRadius = value;
                 }
             }
 

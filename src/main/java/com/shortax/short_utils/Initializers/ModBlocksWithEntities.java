@@ -2,7 +2,7 @@ package com.shortax.short_utils.Initializers;
 
 
 import com.shortax.short_utils.ShortUtils;
-import com.shortax.short_utils.blocks.blockentities.BuildProjector.build_projector_block;
+import com.shortax.short_utils.blocks.blockentities.Projector.projector_block;
 import com.shortax.short_utils.blocks.blockentities.mixedBlocks.mixed_block;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
@@ -13,7 +13,7 @@ import java.util.List;
 public class ModBlocksWithEntities {
 
     public static mixed_block MIXED_BLOCK;
-    public static build_projector_block BUILD_PROJECTOR;
+    public static projector_block BUILD_PROJECTOR;
 
     public static void init()
     {
@@ -26,8 +26,8 @@ public class ModBlocksWithEntities {
         buildingBlockEntities.add(MIXED_BLOCK);
 
 
-        String BUILD_PROJECTOR_ID = "build_projector";
-        BUILD_PROJECTOR = (build_projector_block) Utils.registerBlock_C(BUILD_PROJECTOR_ID,build_projector_block::new,build_projector_block.DEFAULT_SETTINGS);
+        String BUILD_PROJECTOR_ID = "projector_block";
+        BUILD_PROJECTOR = (projector_block) Utils.registerBlock_C(BUILD_PROJECTOR_ID, projector_block::new, projector_block.DEFAULT_SETTINGS);
         functionalBlockEntities.add(BUILD_PROJECTOR);
 
 
