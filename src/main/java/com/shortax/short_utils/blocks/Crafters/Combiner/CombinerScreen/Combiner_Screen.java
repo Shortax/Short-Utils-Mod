@@ -1,4 +1,4 @@
-package com.shortax.short_utils.ScreenHandlers.Combiner_Screen;
+package com.shortax.short_utils.blocks.Crafters.Combiner.CombinerScreen;
 
 import com.shortax.short_utils.ShortUtils;
 import net.minecraft.client.gui.DrawContext;
@@ -8,11 +8,13 @@ import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
+
 public class Combiner_Screen extends HandledScreen<CombinerScreenHandler> {
 
-    private static final Identifier GUI_TEXTURE = Identifier.of(ShortUtils.MOD_ID,"textures/gui/container/combiner_gui.png");
-    private static final Identifier SUCESS_ARROW_RIGHT = Identifier.of(ShortUtils.MOD_ID,"textures/gui/container/combiner_success_arrow.png");
-    private static final Identifier SUCESS_ARROW_LEFT = Identifier.of(ShortUtils.MOD_ID,"textures/gui/container/combiner_success_arrow_2.png");
+    private static final Identifier GUI_TEXTURE = Identifier.of(ShortUtils.MOD_ID,"textures/gui/crafter/combiner_gui.png");
+    private static final Identifier SUCESS_ARROW_RIGHT = Identifier.of(ShortUtils.MOD_ID,"textures/gui/crafter/combiner_success_arrow.png");
+    private static final Identifier SUCESS_ARROW_LEFT = Identifier.of(ShortUtils.MOD_ID,"textures/gui/crafter/combiner_success_arrow_2.png");
+
 
     public Combiner_Screen(CombinerScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);

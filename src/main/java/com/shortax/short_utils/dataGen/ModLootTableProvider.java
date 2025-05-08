@@ -1,6 +1,6 @@
 package com.shortax.short_utils.dataGen;
 
-import com.shortax.short_utils.Initializers.ModBlockEntities;
+import com.shortax.short_utils.Initializers.ModBlocksWithEntities;
 import com.shortax.short_utils.Initializers.ModBlocks;
 import com.shortax.short_utils.Initializers.Utils;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -24,7 +24,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(),this::addDrop);
         Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> this.addDrop(leafStair,dropsWithSilkTouchOrShears(leafStair)));
         addDrop(ModBlocks.COMBINER_BLOCK);
-        addDrop(ModBlockEntities.MIXED_BLOCK);
+        addDrop(ModBlocksWithEntities.MIXED_BLOCK);
+        addDrop(ModBlocksWithEntities.BUILD_PROJECTOR);
 
     }
 }

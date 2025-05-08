@@ -1,4 +1,4 @@
-package com.shortax.short_utils.ScreenHandlers.Combiner_Screen;
+package com.shortax.short_utils.blocks.Crafters.Combiner.CombinerScreen;
 
 import com.shortax.short_utils.Initializers.ModScreenHandlers;
 import net.minecraft.entity.player.PlayerEntity;
@@ -44,8 +44,6 @@ public class CombinerScreenHandler extends ScreenHandler {
     {
         addSlot(new Combiner_Slot(this.inventory,2,80,34,true));
     }
-
-
 
     @Override
     public void onContentChanged(Inventory inventory) {

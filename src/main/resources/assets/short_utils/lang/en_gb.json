@@ -31,6 +31,12 @@
   "block.short_utils.azalea_leaves_stairs": "Azalea Leaves Stairs",
   "block.short_utils.flowering_azalea_leaves_stairs": "Flowering Azalea Leaves Stairs",
 
-  "block.short_utils.combiner_block": "Combiner"
+  "block.short_utils.combiner_block": "Combiner",
+  "tag.item.short_utils.col_red_lamp": "Colored Redstone Lamps",
+  "tag.item.short_utils.custom_pressure_plates": "Custom Pressure Plates",
+  "tag.item.short_utils.fake_redstone_blocks": "Fake Redstone Blocks",
+  "tag.block.short_utils.not_combineable_blocks": "Not Combineable Blocks",
+
+  "block.short_utils.build_projector": "Projector"
 
 }

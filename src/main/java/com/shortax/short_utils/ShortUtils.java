@@ -22,7 +22,7 @@ public class ShortUtils implements ModInitializer {
 		ModItems.init();
 		ModScreenHandlers.init();
 		ModBlocks.init();
-		ModBlockEntities.init();
+		ModBlocksWithEntities.init();
 		ModBlockEntityTypes.init();
 
 	}

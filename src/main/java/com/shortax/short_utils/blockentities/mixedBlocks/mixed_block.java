@@ -27,7 +27,6 @@ public class mixed_block extends BlockWithEntity {
 
     @Override
     protected MapCodec<? extends mixed_block> getCodec() {
-
         return createCodec(mixed_block::new);
     }
 

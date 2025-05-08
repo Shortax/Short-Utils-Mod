@@ -31,5 +31,7 @@
   "block.short_utils.azalea_leaves_stairs": "Azaleenlaubtreppe",
   "block.short_utils.flowering_azalea_leaves_stairs": "Blühende Azaleenlaubtreppe",
 
-  "block.short_utils.combiner_block": "Kombinierer"
+  "block.short_utils.combiner_block": "Kombinierer",
+
+  "block.short_utils.build_projector": "Projektor"
 }

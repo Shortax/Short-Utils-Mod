@@ -1,12 +1,11 @@
 package com.shortax.short_utils.blocks.Crafters.Combiner;
 
 import com.mojang.serialization.MapCodec;
-import com.shortax.short_utils.ScreenHandlers.Combiner_Screen.CombinerScreenHandler;
+import com.shortax.short_utils.blocks.Crafters.Combiner.CombinerScreen.CombinerScreenHandler;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
-import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundEvents;
@@ -55,7 +54,7 @@ public class combiner_block extends Block {
     @Override
     protected NamedScreenHandlerFactory createScreenHandlerFactory(BlockState state, World world, BlockPos pos) {
         return new SimpleNamedScreenHandlerFactory(
-                (syncId, inventory, player) -> new CombinerScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos)), TITLE
+                (syncId, inventory, player) -> new CombinerScreenHandler(syncId, inventory), TITLE
         );
     }
 
