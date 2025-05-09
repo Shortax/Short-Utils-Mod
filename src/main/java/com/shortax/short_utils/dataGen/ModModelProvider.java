@@ -48,7 +48,7 @@ public class ModModelProvider extends FabricModelProvider {
         Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock),mod,leafStair.tint));
 
         //Projector Block
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocksWithEntities.BUILD_PROJECTOR);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocksWithEntities.PROJECTOR_BLOCK);
 
     }
 

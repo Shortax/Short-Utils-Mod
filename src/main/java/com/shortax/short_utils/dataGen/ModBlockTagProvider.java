@@ -1,6 +1,7 @@
 package com.shortax.short_utils.dataGen;
 
 import com.shortax.short_utils.Initializers.ModBlocks;
+import com.shortax.short_utils.Initializers.ModBlocksWithEntities;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -26,5 +27,8 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
                 .add(ModBlocks.COMBINER_BLOCK);
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
                 .add(ModBlocks.COMBINER_BLOCK);
+
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(ModBlocksWithEntities.PROJECTOR_BLOCK);
     }
 }

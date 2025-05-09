@@ -2,13 +2,12 @@ package com.shortax.short_utils.blocks.Crafters.Combiner;
 
 import com.mojang.serialization.MapCodec;
 import com.shortax.short_utils.blocks.Crafters.Combiner.CombinerScreen.CombinerScreenHandler;
+import com.shortax.short_utils.sounds.blocks.ModBlockSoundGroups;
 import net.minecraft.block.*;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
-import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.sound.SoundEvents;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.EnumProperty;
 import net.minecraft.text.Text;
@@ -24,14 +23,12 @@ public class combiner_block extends Block {
     public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
     public static final MapCodec<combiner_block> CODEC = createCodec(combiner_block::new);
 
-    //volume, pitch, break, step, place, hit, fall
-    private static final BlockSoundGroup customSound = new BlockSoundGroup(
-            1.0F, 0.75F, SoundEvents.BLOCK_IRON_BREAK, SoundEvents.BLOCK_IRON_STEP, SoundEvents.BLOCK_IRON_PLACE, SoundEvents.BLOCK_IRON_HIT, SoundEvents.BLOCK_IRON_FALL
-    );
+
 
     public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.create()
             .strength(3.2F, 6.0F)
-            .sounds(customSound).mapColor(MapColor.LIGHT_GRAY)
+            .sounds(ModBlockSoundGroups.COMBINER_BLOCK)
+            .mapColor(MapColor.LIGHT_GRAY)
             .requiresTool();
 
     private static final Text TITLE = Text.of("Combining");

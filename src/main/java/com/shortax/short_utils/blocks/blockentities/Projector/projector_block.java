@@ -1,6 +1,7 @@
 package com.shortax.short_utils.blocks.blockentities.Projector;
 
 import com.mojang.serialization.MapCodec;
+import com.shortax.short_utils.sounds.blocks.ModBlockSoundGroups;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.piston.PistonBehavior;
@@ -15,12 +16,14 @@ import org.jetbrains.annotations.Nullable;
 public class projector_block extends BlockWithEntity {
 
     public static final MapCodec<projector_block> CODEC = createCodec(projector_block::new);
+
     public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings
             .create()
-            .strength(1.5F, 6.0F)
+            .strength(0.25F, 6.0F)
             .pistonBehavior(PistonBehavior.BLOCK)
             .requiresTool()
-            .mapColor(MapColor.PALE_PURPLE);
+            .mapColor(MapColor.PALE_PURPLE)
+            .sounds(ModBlockSoundGroups.PROJECTOR_BLOCK);
 
     public projector_block(Settings settings) {
         super(settings);

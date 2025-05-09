@@ -17,6 +17,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
 
     @Override
     public void generate() {
+
         addDrop(ModBlocks.OBSID_PRESSURE_PLATE);
         addDrop(ModBlocks.FAKE_OAK_TRAPDOOR);
         addDrop(ModBlocks.FAKE_SPRUCE_TRAPDOOR);
@@ -24,8 +25,9 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(),this::addDrop);
         Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> this.addDrop(leafStair,dropsWithSilkTouchOrShears(leafStair)));
         addDrop(ModBlocks.COMBINER_BLOCK);
+
         addDrop(ModBlocksWithEntities.MIXED_BLOCK);
-        addDrop(ModBlocksWithEntities.BUILD_PROJECTOR);
+        addDrop(ModBlocksWithEntities.PROJECTOR_BLOCK);
 
     }
 }

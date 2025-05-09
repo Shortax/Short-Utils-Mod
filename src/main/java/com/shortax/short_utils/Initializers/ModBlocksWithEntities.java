@@ -13,7 +13,8 @@ import java.util.List;
 public class ModBlocksWithEntities {
 
     public static mixed_block MIXED_BLOCK;
-    public static projector_block BUILD_PROJECTOR;
+    public static projector_block PROJECTOR_BLOCK;
+    public static String BUILD_PROJECTOR_ID = "projector_block";
 
     public static void init()
     {
@@ -25,10 +26,8 @@ public class ModBlocksWithEntities {
         MIXED_BLOCK = (mixed_block) Utils.registerBlock_C(MIXED_BLOCK_ID, mixed_block::new, mixed_block.DEFAULT_SETTINGS);
         buildingBlockEntities.add(MIXED_BLOCK);
 
-
-        String BUILD_PROJECTOR_ID = "projector_block";
-        BUILD_PROJECTOR = (projector_block) Utils.registerBlock_C(BUILD_PROJECTOR_ID, projector_block::new, projector_block.DEFAULT_SETTINGS);
-        functionalBlockEntities.add(BUILD_PROJECTOR);
+        PROJECTOR_BLOCK = (projector_block) Utils.registerBlock_C(BUILD_PROJECTOR_ID, projector_block::new, projector_block.DEFAULT_SETTINGS);
+        functionalBlockEntities.add(PROJECTOR_BLOCK);
 
 
         Utils.registering("Block Entities",ShortUtils.MOD_ID);

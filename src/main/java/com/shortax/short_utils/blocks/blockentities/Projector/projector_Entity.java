@@ -77,22 +77,22 @@ public class projector_Entity extends BlockEntity implements ExtendedScreenHandl
 
     @Override
     public Text getDisplayName() {
-        return Text.translatable("block.short_utils.build_projector");
+        return Text.translatable("block.short_utils.projector_block");
     }
 
     @Override
     protected void writeNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
         super.writeNbt(nbt, registryLookup);
-        nbt.putInt("project_block.radius", radius);
-        nbt.putInt("project_block.transparency", transparency );
-        nbt.putInt("project_block.thickness", thickness );
+        nbt.putInt("radius", radius);
+        nbt.putInt("transparency", transparency );
+        nbt.putInt("thickness", thickness );
     }
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        radius = nbt.getInt("project_block.radius",0);
-        transparency = nbt.getInt("project_block.transparency",25);
-        thickness = nbt.getInt("project_block.thickness",1);
+        radius = nbt.getInt("radius",0);
+        transparency = nbt.getInt("transparency",25);
+        thickness = nbt.getInt("thickness",1);
         super.readNbt(nbt, registryLookup);
     }
 

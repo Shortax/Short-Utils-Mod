@@ -19,8 +19,8 @@ public class ModBlockEntityTypes {
         MIXED_BLOCK_TYPE = register("mixed_block", FabricBlockEntityTypeBuilder
                 .create(mixed_block_entity::new, ModBlocksWithEntities.MIXED_BLOCK).build());
 
-        BUILD_PROJECTOR_TYPE = register("build_projector",FabricBlockEntityTypeBuilder
-                .create(projector_Entity::new, ModBlocksWithEntities.BUILD_PROJECTOR).build());
+        BUILD_PROJECTOR_TYPE = register(ModBlocksWithEntities.BUILD_PROJECTOR_ID,FabricBlockEntityTypeBuilder
+                .create(projector_Entity::new, ModBlocksWithEntities.PROJECTOR_BLOCK).build());
     }
 
     public static <T extends BlockEntityType<?>> T register(String path, T blockEntityType) {
