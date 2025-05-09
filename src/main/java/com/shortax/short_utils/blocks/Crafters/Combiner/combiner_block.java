@@ -23,14 +23,6 @@ public class combiner_block extends Block {
     public static final EnumProperty<Direction> FACING = HorizontalFacingBlock.FACING;
     public static final MapCodec<combiner_block> CODEC = createCodec(combiner_block::new);
 
-
-
-    public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings.create()
-            .strength(3.2F, 6.0F)
-            .sounds(ModBlockSoundGroups.COMBINER_BLOCK)
-            .mapColor(MapColor.LIGHT_GRAY)
-            .requiresTool();
-
     private static final Text TITLE = Text.of("Combining");
 
 

@@ -1,6 +1,7 @@
 package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
+import com.shortax.short_utils.blocks.BlockSettings.ModBlockSettings;
 import com.shortax.short_utils.blocks.Crafters.Combiner.combiner_block;
 import com.shortax.short_utils.blocks.FakeRedstoneBlocks.FakeTrapdoor;
 import com.shortax.short_utils.blocks.stairs.LeafStair;
@@ -40,7 +41,7 @@ public class ModBlocks {
         List<ItemConvertible> blocksListFunctional = new ArrayList<>();
 
 
-        OBSID_PRESSURE_PLATE = Utils.registerBlock_C(OBSID_PRESSURE_PLATE_ID, Obsid_Plate::new,Obsid_Plate.DEFAULT_SETTINGS);
+        OBSID_PRESSURE_PLATE = Utils.registerBlock_C(OBSID_PRESSURE_PLATE_ID, Obsid_Plate::new,ModBlockSettings.OBSID_PLATE);
         blocksListRedstone.add(OBSID_PRESSURE_PLATE);
 
         COLORED_REDSTONE_LAMPS = colRedstoneLamp.get_Lamps(ShortUtils.MOD_ID);
@@ -71,7 +72,7 @@ public class ModBlocks {
         blocksListBuilding.addAll(LEAVES_STAIRS);
 
 
-        COMBINER_BLOCK = (combiner_block) Utils.registerBlock_C(COMBINER_BLOCK_ID,combiner_block::new,combiner_block.DEFAULT_SETTINGS);
+        COMBINER_BLOCK = (combiner_block) Utils.registerBlock_C(COMBINER_BLOCK_ID,combiner_block::new, ModBlockSettings.COMBINER_BLOCK);
         blocksListFunctional.add(COMBINER_BLOCK);
 
 

@@ -19,7 +19,7 @@ public class ModBlockEntityTypes {
         MIXED_BLOCK_TYPE = register("mixed_block", FabricBlockEntityTypeBuilder
                 .create(mixed_block_entity::new, ModBlocksWithEntities.MIXED_BLOCK).build());
 
-        BUILD_PROJECTOR_TYPE = register(ModBlocksWithEntities.BUILD_PROJECTOR_ID,FabricBlockEntityTypeBuilder
+        BUILD_PROJECTOR_TYPE = register(ModBlocksWithEntities.PROJECTOR_BLOCK_ID,FabricBlockEntityTypeBuilder
                 .create(projector_Entity::new, ModBlocksWithEntities.PROJECTOR_BLOCK).build());
     }
 

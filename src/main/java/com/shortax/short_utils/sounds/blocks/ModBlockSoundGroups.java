@@ -7,7 +7,7 @@ public class ModBlockSoundGroups {
     //volume, pitch, break, step, place, hit, fall
 
     public static final BlockSoundGroup PROJECTOR_BLOCK = new BlockSoundGroup(
-            1.0F, 2.5F, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundEvents.BLOCK_STONE_STEP, SoundEvents.BLOCK_IRON_PLACE, SoundEvents.BLOCK_STONE_HIT, SoundEvents.BLOCK_STONE_FALL
+            1.0F, 1.75F, SoundEvents.BLOCK_END_PORTAL_FRAME_FILL, SoundEvents.BLOCK_STONE_STEP, SoundEvents.BLOCK_IRON_PLACE, SoundEvents.BLOCK_STONE_HIT, SoundEvents.BLOCK_STONE_FALL
     );
 
 

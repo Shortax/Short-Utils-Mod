@@ -17,13 +17,7 @@ public class projector_block extends BlockWithEntity {
 
     public static final MapCodec<projector_block> CODEC = createCodec(projector_block::new);
 
-    public static final Settings DEFAULT_SETTINGS = AbstractBlock.Settings
-            .create()
-            .strength(0.25F, 6.0F)
-            .pistonBehavior(PistonBehavior.BLOCK)
-            .requiresTool()
-            .mapColor(MapColor.PALE_PURPLE)
-            .sounds(ModBlockSoundGroups.PROJECTOR_BLOCK);
+
 
     public projector_block(Settings settings) {
         super(settings);
