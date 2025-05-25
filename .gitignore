@@ -9,6 +9,8 @@ src/main/generated/
 
 *.png
 
+src/main/resources/assets/short_utils/textures/
+
 # eclipse
 
 *.launch
