@@ -1,12 +1,8 @@
 package com.shortax.short_utils.blocks.plates;
 
-import net.minecraft.block.AbstractBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockSetType;
 import net.minecraft.block.PressurePlateBlock;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -26,6 +22,6 @@ public class Obsid_Plate extends PressurePlateBlock{
             return 15;
          else
             return 0;
-
     }
+
 }

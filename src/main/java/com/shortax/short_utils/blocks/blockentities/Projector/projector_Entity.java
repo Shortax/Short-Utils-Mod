@@ -17,18 +17,32 @@ import net.minecraft.screen.ScreenHandler;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 public class projector_Entity extends BlockEntity implements ExtendedScreenHandlerFactory<BlockPos> {
 
     protected final PropertyDelegate propertyDelegate;
 
-    private int radius = 0;
-    private int thickness = 1;
-    private int transparency = 25;
+    public static int DEFAULT_RADIUS = 5;
+    public static int DEFAULT_THICKNESS = 1;
+    public static int DEFAULT_TRANSPARENCY = 50;
 
-    private int MaxRadius = 51;
-    private int thicknessMax = MaxRadius-1;
+    public static int MIN_RADIUS = 3;
+    public static int MIN_THICKNESS = 1;
+    public static int MIN_TRANSPARENCY = 0;
+
+    public static int MAX_RADIUS = 51;
+    public static int MAX_THICKNESS = MAX_RADIUS -1;
+    public static int MAX_TRANSPARENCY = 100;
+
+    private int radius = MIN_RADIUS;
+    private int thickness = MIN_THICKNESS;
+    private int transparency = MIN_TRANSPARENCY;
+
+    private int i_tick = 0;
+
+    public static int delegate_size = 3;
 
     public projector_Entity(BlockPos pos, BlockState state) {
         super(ModBlockEntityTypes.BUILD_PROJECTOR_TYPE, pos, state);
@@ -39,9 +53,6 @@ public class projector_Entity extends BlockEntity implements ExtendedScreenHandl
                     case 0 -> projector_Entity.this.radius;
                     case 1 -> projector_Entity.this.thickness;
                     case 2 -> projector_Entity.this.transparency;
-
-                    case 3 -> projector_Entity.this.thicknessMax;
-                    case 4 -> projector_Entity.this.MaxRadius;
                     default -> 0;
                 };
             }
@@ -52,22 +63,18 @@ public class projector_Entity extends BlockEntity implements ExtendedScreenHandl
                     case 0 -> projector_Entity.this.radius = value;
                     case 1 -> projector_Entity.this.thickness = value;
                     case 2 -> projector_Entity.this.transparency = value;
-
-                    case 3 -> projector_Entity.this.thicknessMax = value;
-                    case 4 -> projector_Entity.this.MaxRadius = value;
                 }
             }
 
             @Override
             public int size() {
-                return 5;
+                return delegate_size;
             }
         };
-    }
 
-    private boolean shouldRender()
-    {
-        return this.radius > 0;
+        this.propertyDelegate.set(0,DEFAULT_RADIUS);
+        this.propertyDelegate.set(1,DEFAULT_THICKNESS);
+        this.propertyDelegate.set(2,DEFAULT_TRANSPARENCY);
     }
 
     @Override
@@ -90,10 +97,10 @@ public class projector_Entity extends BlockEntity implements ExtendedScreenHandl
 
     @Override
     protected void readNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup registryLookup) {
-        radius = nbt.getInt("radius",0);
-        transparency = nbt.getInt("transparency",25);
-        thickness = nbt.getInt("thickness",1);
         super.readNbt(nbt, registryLookup);
+        radius = nbt.getInt("radius",DEFAULT_RADIUS);
+        transparency = nbt.getInt("transparency",DEFAULT_TRANSPARENCY);
+        thickness = nbt.getInt("thickness",DEFAULT_THICKNESS);
     }
 
     @Nullable
@@ -111,5 +118,16 @@ public class projector_Entity extends BlockEntity implements ExtendedScreenHandl
     @Override
     public NbtCompound toInitialChunkDataNbt(RegistryWrapper.WrapperLookup registryLookup) {
         return createNbt(registryLookup);
+    }
+
+    @SuppressWarnings({"Unused", "unused"})
+    public void tick(World world1, BlockPos pos, BlockState state1) {
+        if(i_tick % 100 == 0)
+        {
+            //System.out.println(pos + " | " + state1 + " | " + world1 +  " | " + "Radius Value = " + this.propertyDelegate.get(0));
+            if(i_tick >= 100000)
+                i_tick = 0;
+        }
+        i_tick++;
     }
 }

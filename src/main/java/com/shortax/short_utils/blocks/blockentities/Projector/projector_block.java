@@ -1,10 +1,11 @@
 package com.shortax.short_utils.blocks.blockentities.Projector;
 
 import com.mojang.serialization.MapCodec;
-import com.shortax.short_utils.sounds.blocks.ModBlockSoundGroups;
+import com.shortax.short_utils.Initializers.ModBlockEntityTypes;
 import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.piston.PistonBehavior;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.util.ActionResult;
@@ -37,6 +38,17 @@ public class projector_block extends BlockWithEntity {
             }
         }
         return ActionResult.SUCCESS;
+    }
+
+    @Nullable
+    @Override
+    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+        if(world.isClient()) {
+            return null;
+        }
+
+        return validateTicker(type, ModBlockEntityTypes.BUILD_PROJECTOR_TYPE,
+                (world1, pos, state1, blockEntity) -> blockEntity.tick(world1, pos, state1));
     }
 
     @Override
