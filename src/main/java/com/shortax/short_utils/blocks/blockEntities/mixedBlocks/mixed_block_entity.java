@@ -1,4 +1,4 @@
-package com.shortax.short_utils.blocks.blockentities.mixedBlocks;
+package com.shortax.short_utils.blocks.blockEntities.mixedBlocks;
 
 import com.shortax.short_utils.Initializers.ModBlockEntityTypes;
 import net.minecraft.block.BlockState;

@@ -19,16 +19,18 @@
  *
  */
 
-package com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen;
+package com.shortax.short_utils.blocks.blockEntities.Projector.ProjectorScreen;
 
 import com.shortax.short_utils.Initializers.ModScreenHandlers;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.screen.*;
 import net.minecraft.util.math.BlockPos;
-import com.shortax.short_utils.blocks.blockentities.Projector.projector_Entity;
+import com.shortax.short_utils.blocks.blockEntities.Projector.projector_Entity;
 
 public class ProjectorScreenHandler extends ScreenHandler {
 
@@ -48,6 +50,15 @@ public class ProjectorScreenHandler extends ScreenHandler {
         this.propertyDelegate = arrayPropertyDelegate;
 
         this.addProperties(this.propertyDelegate);
+    }
+
+
+    @Override
+    @Environment(EnvType.SERVER)
+    public void setProperty(int id, int value) {
+        super.setProperty(id,value);
+        this.blockEntity.markDirty();
+        this.sendContentUpdates();
     }
 
     @Override

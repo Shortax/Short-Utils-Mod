@@ -23,8 +23,8 @@ package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.BlockSettings.ModBlockSettings;
-import com.shortax.short_utils.blocks.blockentities.Projector.projector_block;
-import com.shortax.short_utils.blocks.blockentities.mixedBlocks.mixed_block;
+import com.shortax.short_utils.blocks.blockEntities.Projector.projector_block;
+import com.shortax.short_utils.blocks.blockEntities.mixedBlocks.mixed_block;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
 

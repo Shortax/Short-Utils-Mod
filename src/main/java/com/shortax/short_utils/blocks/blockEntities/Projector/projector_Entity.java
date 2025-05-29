@@ -19,10 +19,10 @@
  *
  */
 
-package com.shortax.short_utils.blocks.blockentities.Projector;
+package com.shortax.short_utils.blocks.blockEntities.Projector;
 
 import com.shortax.short_utils.Initializers.ModBlockEntityTypes;
-import com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen.ProjectorScreenHandler;
+import com.shortax.short_utils.blocks.blockEntities.Projector.ProjectorScreen.ProjectorScreenHandler;
 import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
