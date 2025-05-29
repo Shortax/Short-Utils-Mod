@@ -19,11 +19,13 @@
  *
  */
 
-package com.shortax.short_utils.blocks.blockentities.Projector.ProjectorScreen;
+package com.shortax.short_utils.blocks.blockEntities.Projector.ProjectorScreen;
 
+import com.shortax.short_utils.Initializers.ModPayLoads;
 import com.shortax.short_utils.ShortUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.gui.tooltip.Tooltip;
@@ -77,6 +79,8 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
 
     private float totalDeltaTime = 0f;
 
+    private int first;
+
     public ProjectorScreen(ProjectorScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, TITLE);
 
@@ -90,6 +94,8 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
                 translate(announce_path(APPLY_IDX)).getString(),
                 translate(announce_path(DEFAULT_IDX)).getString()
         };
+
+        first = 0;
     }
 
     @Override
@@ -114,22 +120,29 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
         pack = 0;
 
         addDrawableChild(get_Button(this.x,APPLY_IDX,pressAction -> {
+            if(compare_client_values())
+            {
+                this.applied = true;
+                this.reset = false;
 
-            this.applied = true;
-            this.reset = false;
+                updateToServer();
 
-            this.show_text = 4000f;
-
+                this.show_text = 4000f; //in milliseconds
+            }
             this.handler.onButtonClick(player,0);
         }));
 
         addDrawableChild(get_Button(this.x,DEFAULT_IDX,pressAction -> {
-            this.applied = false;
-            this.reset = true;
+            if(compare_client_values()) {
+                this.applied = false;
+                this.reset = true;
 
-            this.show_text = 4000f;
+                this.reset_sliders();
 
-            this.reset_sliders();
+                updateToServer();
+
+                this.show_text = 2500f; //in milliseconds
+            }
 
             this.handler.onButtonClick(player,1);
         }));
@@ -141,6 +154,16 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
         updateClientValues(updateServerTrackedValues());
         add_settings_sliders();
         updateSliders();
+    }
+
+    private void updateToServer()
+    {
+        ClientPlayNetworking.send(new ModPayLoads.Projector_Variables_Payload(this.client_radius,this.client_thickness,this.client_transparency));
+    }
+
+    private boolean compare_client_values()
+    {
+        return (this.client_radius != server_radius || this.client_thickness != this.server_thickness || this.client_transparency != server_transparency);
     }
 
     @Override
@@ -167,16 +190,19 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
 
         totalDeltaTime += delta*50f; //to milliseconhds
 
-        if(totalDeltaTime >= 16f) //after 16ms update sliders
+        float check = (first==1) ? 16f : 2f;
+
+        if(totalDeltaTime >= check)
         {
-            boolean changed = updateServerTrackedValues();
-            if(changed) {
+            if(updateServerTrackedValues()) {
                 updateClientValues(true);
                 updateSliders();
             }
 
             advance_text_fade();
             totalDeltaTime = 0f;
+
+            first = 1;
         }
     }
 
@@ -194,20 +220,16 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
             this.server_transparency= this.handler.get_transparency();
             changed = true;
         }
-
         return changed;
     }
 
     private void updateClientValues(boolean changed)
     {
-        if(changed) {
-            if (server_radius != client_radius)
-                client_radius = server_radius;
-            if (server_thickness != client_thickness)
-                client_thickness = server_thickness;
-            if (server_transparency != client_transparency)
-                client_transparency = server_transparency;
-        }
+        if(!changed) return;
+
+        if (server_radius != client_radius) client_radius = server_radius;
+        if (server_thickness != client_thickness) client_thickness = server_thickness;
+        if (server_transparency != client_transparency) client_transparency = server_transparency;
     }
 
     private void reset_sliders()
@@ -243,21 +265,30 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
         int i = 0;
         this.radius_slider = new mySlider(sliderX, get_slider_y(y_NORTH, i, sliderHeight, spacing), sliderWidth, sliderHeight,
                 this.client_radius, this.handler.get_min_radius() , this.handler.get_max_radius(),this.handler.get_default_radius()  ,
-                updateValue -> this.client_radius = updateValue);
+                updateValue -> {
+                    this.client_radius = updateValue;
+                    this.show_text = 0f;
+                });
         this.radius_slider.set_unit("bl");
         this.radius_slider.updateMessage();
 
         i = 1;
         this.thickness_slider = new mySlider(sliderX, get_slider_y(y_NORTH, i, sliderHeight, spacing), sliderWidth, sliderHeight,
                 this.client_thickness, this.handler.get_min_thickness(), this.handler.get_max_thickness(), this.handler.get_default_thickness(),
-                updateValue -> this.client_thickness = updateValue);
+                updateValue -> {
+                    this.client_thickness = updateValue;
+                    this.show_text = 0f;
+                });
         this.thickness_slider.set_unit("bl");
         this.thickness_slider.updateMessage();
 
         i = 2;
         this.transparency_slider = new mySlider(sliderX, get_slider_y(y_NORTH, i, sliderHeight, spacing), sliderWidth, sliderHeight,
                 this.client_transparency, this.handler.get_min_transparency() , this.handler.get_max_transparency() , this.handler.get_default_transparency(),
-                updateValue -> this.client_transparency = updateValue);
+                updateValue -> {
+                    this.client_transparency = updateValue;
+                    this.show_text = 0f;
+                });
         this.transparency_slider.set_unit("%");
         this.transparency_slider.updateMessage();
 

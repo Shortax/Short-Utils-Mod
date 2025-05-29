@@ -19,7 +19,7 @@
  *
  */
 
-package com.shortax.short_utils.blocks.blockentities.Projector;
+package com.shortax.short_utils.blocks.blockEntities.Projector;
 
 import com.mojang.serialization.MapCodec;
 import com.shortax.short_utils.Initializers.ModBlockEntityTypes;

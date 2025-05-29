@@ -22,8 +22,8 @@
 package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
-import com.shortax.short_utils.blocks.blockentities.Projector.projector_Entity;
-import com.shortax.short_utils.blocks.blockentities.mixedBlocks.mixed_block_entity;
+import com.shortax.short_utils.blocks.blockEntities.Projector.projector_Entity;
+import com.shortax.short_utils.blocks.blockEntities.mixedBlocks.mixed_block_entity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
