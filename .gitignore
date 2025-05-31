@@ -7,6 +7,10 @@ classes/
 
 /src/main/generated/
 
+/src/main/resources/assets/short_utils/textures/
+
+/src/main/resources/assets/short_utils/models/
+
 *.png
 
 # eclipse
@@ -42,4 +46,3 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
-/src/main/resources/assets/short_utils/textures/
