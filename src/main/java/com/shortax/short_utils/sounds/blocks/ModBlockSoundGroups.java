@@ -14,4 +14,6 @@ public class ModBlockSoundGroups {
     public static final BlockSoundGroup COMBINER_BLOCK = new BlockSoundGroup(
             1.0F, 0.75F, SoundEvents.BLOCK_IRON_BREAK, SoundEvents.BLOCK_IRON_STEP, SoundEvents.BLOCK_IRON_PLACE, SoundEvents.BLOCK_IRON_HIT, SoundEvents.BLOCK_IRON_FALL
     );
+
+    public static final BlockSoundGroup GEN_PROJECTED_BLOCK = BlockSoundGroup.GLASS;
 }

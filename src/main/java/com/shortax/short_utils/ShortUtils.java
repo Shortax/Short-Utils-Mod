@@ -31,6 +31,8 @@ import org.slf4j.LoggerFactory;
 public class ShortUtils implements ModInitializer {
 	public static final String MOD_ID = "short_utils";
 
+	public static final String MOD_NAME = "Short Utils";
+
 	// This logger is used to write text to the console and the log file.
 	// It is considered best practice to use your mod id as the logger's name.
 	// That way, it's clear which mod wrote info, warnings, and errors.
@@ -47,12 +49,13 @@ public class ShortUtils implements ModInitializer {
 		ServerReceivers.init();
 		ClientReceivers.init();
 
-
 		ModItems.init();
 		ModScreenHandlers.init();
 		ModBlocks.init();
-		ModBlocksWithEntities.init();
+		ModBlocks.WithEntities.init();
 		ModBlockEntityTypes.init();
+
+		ModTabs.init();
 
 	}
 }

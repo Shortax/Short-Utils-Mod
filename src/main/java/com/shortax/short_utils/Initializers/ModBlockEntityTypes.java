@@ -38,10 +38,10 @@ public class ModBlockEntityTypes {
 
     public static void init() {
         MIXED_BLOCK_TYPE = register("mixed_block", FabricBlockEntityTypeBuilder
-                .create(mixed_block_entity::new, ModBlocksWithEntities.MIXED_BLOCK).build());
+                .create(mixed_block_entity::new, ModBlocks.WithEntities.MIXED_BLOCK).build());
 
-        BUILD_PROJECTOR_TYPE = register(ModBlocksWithEntities.PROJECTOR_BLOCK_ID,FabricBlockEntityTypeBuilder
-                .create(projector_Entity::new, ModBlocksWithEntities.PROJECTOR_BLOCK).build());
+        BUILD_PROJECTOR_TYPE = register(ModBlocks.WithEntities.PROJECTOR_BLOCK_ID,FabricBlockEntityTypeBuilder
+                .create(projector_Entity::new, ModBlocks.WithEntities.PROJECTOR_BLOCK).build());
     }
 
     public static <T extends BlockEntityType<?>> T register(String path, T blockEntityType) {

@@ -22,7 +22,7 @@
 package com.shortax.short_utils.dataGen;
 
 import com.shortax.short_utils.Initializers.ModBlocks;
-import com.shortax.short_utils.Initializers.ModBlocksWithEntities;
+import com.shortax.short_utils.Initializers.ModItems;
 import com.shortax.short_utils.Initializers.Utils;
 import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.FakeRedstoneBlocks.FakeTrapdoor;
@@ -38,11 +38,18 @@ import net.minecraft.util.math.Direction;
 
 import java.util.Optional;
 
-@SuppressWarnings("SameParameterValue")
 public class ModModelProvider extends FabricModelProvider {
 
     public ModModelProvider(FabricDataOutput output) {
         super(output);
+    }
+
+    @Override
+    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
+        //projected_remover
+        itemModelGenerator.register(ModItems.PROJECTED_REMOVER, Models.GENERATED);
+
+        itemModelGenerator.register(ModItems.USEFUL_SWORD,Models.GENERATED);
     }
 
     @Override
@@ -69,7 +76,10 @@ public class ModModelProvider extends FabricModelProvider {
         Utils.applyToEach(ModBlocks.LEAVES_STAIRS, leafStair -> create_custom_stair(leafStair,blockStateModelGenerator,TextureMap.all(leafStair.baseBlock),mod,leafStair.tint));
 
         //Projector Block
-        blockStateModelGenerator.registerSimpleCubeAll(ModBlocksWithEntities.PROJECTOR_BLOCK);
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.WithEntities.PROJECTOR_BLOCK);
+
+        //projected block
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.GEN_PROJECTED_BLOCK);
 
     }
 
@@ -133,7 +143,7 @@ public class ModModelProvider extends FabricModelProvider {
                 )));
     }
 
-    @SuppressWarnings("unused")
+    @SuppressWarnings({"SameParameterValue"})
     private static void register_multi_face_block_custom(Block block, BlockStateModelGenerator blockStateModelGenerator, boolean customParticle, boolean customFront, boolean customTop){
         String front = customFront ?        "_front" : "_side";
         String particle = customParticle ?  "_particle" : "_side";
@@ -204,11 +214,5 @@ public class ModModelProvider extends FabricModelProvider {
                 .register(Direction.SOUTH, BlockStateModelGenerator.ROTATE_Y_180)
                 .register(Direction.WEST, BlockStateModelGenerator.ROTATE_Y_270)
                 .register(Direction.NORTH, BlockStateModelGenerator.NO_OP);
-    }
-
-
-    @Override
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-
     }
 }

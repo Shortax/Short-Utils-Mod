@@ -23,6 +23,7 @@ package com.shortax.short_utils.blocks.BlockSettings;
 
 import com.shortax.short_utils.sounds.blocks.ModBlockSoundGroups;
 import net.minecraft.block.AbstractBlock;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
@@ -47,6 +48,21 @@ public class ModBlockSettings {
             .create()
             .strength(2F,1200F)
             .noCollision()
+            .allowsSpawning(Blocks::never)
             .requiresTool()
             .sounds(BlockSoundGroup.DEEPSLATE).mapColor(MapColor.BLACK);
+
+    public static final AbstractBlock.Settings GEN_PROJECTED_BLOCK = AbstractBlock.Settings
+            .create()
+            .noCollision()
+            .dropsNothing()
+            .noBlockBreakParticles()
+            .nonOpaque()
+            .replaceable()
+            .sounds(ModBlockSoundGroups.GEN_PROJECTED_BLOCK)
+            .allowsSpawning(Blocks::never)
+            .solidBlock(Blocks::never)
+            .suffocates(Blocks::never)
+            .blockVision(Blocks::never)
+            .air();
 }

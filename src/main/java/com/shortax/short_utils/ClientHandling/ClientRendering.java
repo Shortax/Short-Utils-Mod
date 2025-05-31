@@ -36,11 +36,19 @@ public class ClientRendering {
 
     public static void init()
     {
+        //transparent blocks
         for(Block b : ModBlocks.BlocksWithTransparency)
+        {
+            BlockRenderLayerMap.INSTANCE.putBlock(b, RenderLayer.getTranslucent());
+        }
+
+        //Blocks with cutout holes
+        for(Block b : ModBlocks.BlocksWithCutout)
         {
             BlockRenderLayerMap.INSTANCE.putBlock(b, RenderLayer.getCutout());
         }
 
+        //tint
         for(LeafStair b : ModBlocks.LEAVES_STAIRS)
         {
             ColorProviderRegistry.BLOCK.register(

@@ -19,21 +19,23 @@
  *
  */
 
-package com.shortax.short_utils.ServerHandling;
+package com.shortax.short_utils.Initializers;
 
-import com.shortax.short_utils.Initializers.ModPayLoads;
-import com.shortax.short_utils.blocks.blockEntities.Projector.ProjectorScreen.ProjectorScreenHandler;
-import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import com.shortax.short_utils.ShortUtils;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.registry.RegistryKey;
 
-public class ServerReceivers {
+public class ModTabs {
 
-    @SuppressWarnings("RedundantCast")
+    public static final String SHORT_UTILS_MAIN_ITEM_GROUP_ID = "main_item_group";
+    public static RegistryKey<ItemGroup> SHORT_UTILS_MAIN_ITEM_GROUP;
+
     public static void init()
     {
-        ServerPlayNetworking.registerGlobalReceiver(ModPayLoads.Projector_Variables_Payload.ID,((payload, context) -> context.server().execute( () -> {
-            ((ProjectorScreenHandler)context.player().currentScreenHandler).setProperty(0,payload.radius());
-            ((ProjectorScreenHandler)context.player().currentScreenHandler).setProperty(1,payload.thickness());
-            ((ProjectorScreenHandler)context.player().currentScreenHandler).setProperty(2,payload.transparency());
-        })));
+        SHORT_UTILS_MAIN_ITEM_GROUP = Utils.registerItemGroup(SHORT_UTILS_MAIN_ITEM_GROUP_ID,ModBlocks.COMBINER_BLOCK.asItem(), ShortUtils.MOD_NAME);
+
+        Utils.registerItemGroupEntry(ModTabs.SHORT_UTILS_MAIN_ITEM_GROUP,ModItems.itemsListCustomTab);
+        Utils.registerItemGroupEntry(ModTabs.SHORT_UTILS_MAIN_ITEM_GROUP,ModBlocks.blocksListCustomTab);
     }
+
 }

@@ -42,5 +42,7 @@
 
   "block.short_utils.combiner_block": "Kombinierer",
 
-  "block.short_utils.projector_block": "Projektor"
+  "block.short_utils.projector_block": "Projektor",
+
+  "item.short_utils.projected_remover": "Projeziert Entferner"
 }

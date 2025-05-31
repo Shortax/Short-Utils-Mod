@@ -23,34 +23,44 @@ package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.cRedstoneLamp.colRedstoneLamp;
+import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class Utils {
 
-    public static void registerItemGroupEntry(RegistryKey<ItemGroup> ItemGroup, Collection<ItemConvertible> entriesToAdd)
+    public static void registerItemGroupEntry(RegistryKey<ItemGroup> itemGroup, Collection<ItemConvertible> entriesToAdd)
     {
-        ItemGroupEvents.modifyEntriesEvent(ItemGroup).register(entries -> {
+        ItemGroupEvents.modifyEntriesEvent(itemGroup).register(entries -> {
             for(ItemConvertible ItemBlock : entriesToAdd)
             {
                 entries.add(ItemBlock);
             }
         });
+    }
+
+    public static RegistryKey<ItemGroup> registerItemGroup(String ID, Item icon, String TabName)
+    {
+        Identifier ident = Identifier.of(ShortUtils.MOD_ID,ID);
+        RegistryKey<ItemGroup> key = RegistryKey.of(RegistryKeys.ITEM_GROUP,ident);
+        Registry.register(Registries.ITEM_GROUP,key, FabricItemGroup.builder().displayName(Text.literal(TabName)).icon(() -> new ItemStack(icon)).build());
+
+        return key;
     }
 
     public static Block registerBlock_C(String nameID, Function<AbstractBlock.Settings, Block> blockConstructor, AbstractBlock.Settings settings)
@@ -90,15 +100,30 @@ public class Utils {
         return ret;
     }
 
-    @SuppressWarnings("unused")
-    public static Item registerItem(String name, Item item)
+    public static Item registerItem_C(String nameID, Function<Item.Settings, Item> itemConstructor, Item.Settings settings)
     {
-        return Registry.register(Registries.ITEM, Identifier.of(ShortUtils.MOD_ID, name),item);
+        Identifier ident = Identifier.of(ShortUtils.MOD_ID,nameID);
+
+        RegistryKey<Item> keyBlock = RegistryKey.of(RegistryKeys.ITEM,ident);
+        Item item = itemConstructor.apply(settings.registryKey(keyBlock));
+
+        return registerItem(item,ident);
+    }
+
+    public static Item registerItem(Item item, Identifier ident)
+    {
+        return Registry.register(Registries.ITEM,ident,item);
+    }
+
+    public static void LogToChat(String message, World world){
+        if(!world.isClient){
+            Objects.requireNonNull(world.getServer()).getPlayerManager().broadcast(Text.of(message),false);
+        }
     }
 
     public static Item getDye(String color){ return colRedstoneLamp.getDye(color); }
 
-    public static void registering(String LogType, String modID)
+    public static void Log_registering(String LogType, String modID)
     {
         ShortUtils.LOGGER.info("Registering {}: {}", LogType, modID);
     }

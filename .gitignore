@@ -5,11 +5,9 @@ build/
 out/
 classes/
 
-src/main/generated/
+/src/main/generated/
 
 *.png
-
-src/main/resources/assets/short_utils/textures/
 
 # eclipse
 
@@ -44,3 +42,4 @@ hs_err_*.log
 replay_*.log
 *.hprof
 *.jfr
+/src/main/resources/assets/short_utils/textures/
