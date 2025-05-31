@@ -7,6 +7,10 @@
   "ui.short_utils.default_text" : "Reset values to default",
   "ui.short_utils.default_announce" : "Reset!",
 
+  "tag.item.short_utils.col_red_lamp": "Colored Redstone Lamps",
+  "tag.item.short_utils.custom_pressure_plates": "Custom Pressure Plates",
+  "tag.item.short_utils.fake_redstone_blocks": "Fake Redstone Blocks",
+  "tag.block.short_utils.not_combineable_blocks": "Not Combineable Blocks",
 
   "block.short_utils.obsid_pressure_plate": "Obsidian Pressure Plate",
 
@@ -42,12 +46,8 @@
 
   "block.short_utils.combiner_block": "Combiner",
 
-  "tag.item.short_utils.col_red_lamp": "Colored Redstone Lamps",
-  "tag.item.short_utils.custom_pressure_plates": "Custom Pressure Plates",
-  "tag.item.short_utils.fake_redstone_blocks": "Fake Redstone Blocks",
-
-  "tag.block.short_utils.not_combineable_blocks": "Not Combineable Blocks",
   "block.short_utils.projector_block": "Projector",
 
-  "item.short_utils.projected_remover": "Projected Remover"
+  "item.short_utils.projected_remover": "Projected Remover",
+  "item.short_utils.useful_sword": "Useful Sword?"
 }

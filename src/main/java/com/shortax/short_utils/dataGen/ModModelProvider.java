@@ -49,7 +49,7 @@ public class ModModelProvider extends FabricModelProvider {
         //projected_remover
         itemModelGenerator.register(ModItems.PROJECTED_REMOVER, Models.GENERATED);
 
-        itemModelGenerator.register(ModItems.USEFUL_SWORD,Models.GENERATED);
+        itemModelGenerator.register(ModItems.USEFUL_SWORD,Models.HANDHELD);
     }
 
     @Override

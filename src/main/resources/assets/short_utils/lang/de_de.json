@@ -7,6 +7,10 @@
   "ui.short_utils.default_text" : "Auf Standardwerte zurücksetzen",
   "ui.short_utils.default_announce" : "Zurückgesetzt!",
 
+  "tag.item.short_utils.col_red_lamp": "Gefärbte Redstone Lampen",
+  "tag.item.short_utils.custom_pressure_plates": "Extra Druckplatten",
+  "tag.item.short_utils.fake_redstone_blocks": "Fake Redstone Blöcke",
+  "tag.block.short_utils.not_combineable_blocks": "Nicht-Kombinierbare Blöcke",
 
   "block.short_utils.obsid_pressure_plate": "Obsidian Druckplatte",
 
@@ -44,5 +48,6 @@
 
   "block.short_utils.projector_block": "Projektor",
 
-  "item.short_utils.projected_remover": "Projeziert Entferner"
+  "item.short_utils.projected_remover": "Projeziert Entferner",
+  "item.short_utils.useful_sword": "Nützliches Schwert?"
 }
