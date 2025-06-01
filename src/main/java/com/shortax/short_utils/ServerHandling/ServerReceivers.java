@@ -21,7 +21,7 @@
 
 package com.shortax.short_utils.ServerHandling;
 
-import com.shortax.short_utils.Initializers.ModPayLoads;
+import com.shortax.short_utils.Initializers.ModPayloads;
 import com.shortax.short_utils.blocks.blockEntities.Projector.ProjectorScreen.ProjectorScreenHandler;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 
@@ -30,7 +30,7 @@ public class ServerReceivers {
     @SuppressWarnings("RedundantCast")
     public static void init()
     {
-        ServerPlayNetworking.registerGlobalReceiver(ModPayLoads.Projector_Variables_Payload.ID,((payload, context) -> context.server().execute( () -> {
+        ServerPlayNetworking.registerGlobalReceiver(ModPayloads.Projector_Variables_Payload.ID,((payload, context) -> context.server().execute( () -> {
             ((ProjectorScreenHandler)context.player().currentScreenHandler).setProperty(0,payload.radius());
             ((ProjectorScreenHandler)context.player().currentScreenHandler).setProperty(1,payload.thickness());
             ((ProjectorScreenHandler)context.player().currentScreenHandler).setProperty(2,payload.transparency());

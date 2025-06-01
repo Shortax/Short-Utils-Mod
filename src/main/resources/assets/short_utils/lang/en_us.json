@@ -49,5 +49,7 @@
   "block.short_utils.projector_block": "Projector",
 
   "item.short_utils.projected_remover": "Projected Remover",
-  "item.short_utils.useful_sword": "Useful Sword?"
+  "item.short_utils.useful_sword": "Useful Sword?",
+  "item.short_utils.projected_remover.tooltip": "Removes the blocks created by the Projector",
+  "item.short_utils.fake_redstone.tooltip": "*Does not react to redstone input*"
 }

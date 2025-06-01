@@ -21,14 +21,8 @@
 
 package com.shortax.short_utils.Initializers;
 
-import net.minecraft.util.Identifier;
+public final class constants {
 
-public class ModPackets {
-    public static final Identifier PROJECTOR_SCREEN_PACKET_ID = Identifier.of("mymodid", "send_data");
-
-    public static void init()
-    {
-
-    }
+    public static final String translated_tooltip_flag = "#/iz+3$.";
 
 }

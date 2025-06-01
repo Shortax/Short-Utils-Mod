@@ -23,6 +23,7 @@ package com.shortax.short_utils;
 
 import com.shortax.short_utils.ClientHandling.ClientRendering;
 import com.shortax.short_utils.ClientHandling.ClientScreenHandlers;
+import com.shortax.short_utils.ClientHandling.ClientTooltips;
 import net.fabricmc.api.ClientModInitializer;
 
 public class ShortUtilsClient implements ClientModInitializer {
@@ -32,6 +33,6 @@ public class ShortUtilsClient implements ClientModInitializer {
 
         ClientRendering.init();
         ClientScreenHandlers.init();
-
+        ClientTooltips.init();
     }
 }

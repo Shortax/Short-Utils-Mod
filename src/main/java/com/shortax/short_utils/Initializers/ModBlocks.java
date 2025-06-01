@@ -30,16 +30,14 @@ import com.shortax.short_utils.blocks.blockEntities.Projector.projector_block;
 import com.shortax.short_utils.blocks.blockEntities.mixedBlocks.mixed_block;
 import com.shortax.short_utils.blocks.stairs.LeafStair;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.util.Identifier;
 import com.shortax.short_utils.blocks.plates.Obsid_Plate;
 import com.shortax.short_utils.blocks.cRedstoneLamp.colRedstoneLamp;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ModBlocks {
 
@@ -62,6 +60,8 @@ public class ModBlocks {
     public static List<Block> BlocksWithTransparency = new ArrayList<>();
     public static Collection<ItemConvertible> blocksListCustomTab;
 
+    public static Map<Item, Utils.custom_tooltip_bundle> tooltip;
+
     public static void init()
     {
         List<ItemConvertible> blocksListRedstone = new ArrayList<>();
@@ -70,6 +70,8 @@ public class ModBlocks {
         List<ItemConvertible> blocksListFunctional = new ArrayList<>();
 
         blocksListCustomTab = new ArrayList<>();
+
+        tooltip = new HashMap<>();
 
         OBSID_PRESSURE_PLATE = Utils.registerBlock_C(OBSID_PRESSURE_PLATE_ID, Obsid_Plate::new,ModBlockSettings.OBSID_PLATE);
         blocksListRedstone.add(OBSID_PRESSURE_PLATE);
@@ -81,6 +83,7 @@ public class ModBlocks {
             blocksListColored.add(COLORED_REDSTONE_LAMPS.get(col));
         }
 
+
         FAKE_OAK_TRAPDOOR = (FakeTrapdoor) Utils.registerBlock_C(FAKE_OAK_TRAPDOOR_ID, FakeTrapdoor.OAK_TYPE::new,FakeTrapdoor.OAK_TYPE.DEFAULT_SETTINGS);
         blocksListBuilding.add(FAKE_OAK_TRAPDOOR);
         BlocksWithCutout.add(FAKE_OAK_TRAPDOOR);
@@ -91,6 +94,11 @@ public class ModBlocks {
         FAKE_IRON_TRAPDOOR = (FakeTrapdoor) Utils.registerBlock_C(FAKE_IRON_TRAPDOOR_ID, FakeTrapdoor.IRON_TYPE::new,FakeTrapdoor.IRON_TYPE.DEFAULT_SETTINGS);
         blocksListBuilding.add(FAKE_IRON_TRAPDOOR);
         BlocksWithCutout.add(FAKE_IRON_TRAPDOOR);
+
+        tooltip.put(FAKE_OAK_TRAPDOOR.asItem(),FakeTrapdoor.TOOLTIP_BUNDLE);
+        tooltip.put(FAKE_SPRUCE_TRAPDOOR.asItem(),FakeTrapdoor.TOOLTIP_BUNDLE);
+        tooltip.put(FAKE_IRON_TRAPDOOR.asItem(),FakeTrapdoor.TOOLTIP_BUNDLE);
+
 
         LEAVES_STAIRS = new ArrayList<>();
         for(LeafStair ls : LeafStair.get_leaves_stairs())
@@ -111,7 +119,6 @@ public class ModBlocks {
         blocksListCustomTab.addAll(blocksListBuilding);
         blocksListCustomTab.addAll(blocksListFunctional);
         blocksListCustomTab.add(GEN_PROJECTED_BLOCK);
-
 
         Utils.Log_registering("Blocks",ShortUtils.MOD_ID);
         Utils.registerItemGroupEntry(ItemGroups.REDSTONE,blocksListRedstone);

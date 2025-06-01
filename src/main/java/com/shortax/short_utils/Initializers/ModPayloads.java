@@ -21,16 +21,22 @@
 
 package com.shortax.short_utils.Initializers;
 
+import com.shortax.short_utils.ShortUtils;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.codec.PacketCodecs;
 import net.minecraft.network.packet.CustomPayload;
+import net.minecraft.util.Identifier;
 
-public class ModPayLoads {
+public class ModPayloads {
+
+    static class Packets{
+        public static final Identifier PROJECTOR_SCREEN_PACKET_ID = Identifier.of(ShortUtils.MOD_ID, "projector_variables_packet");
+    }
 
     public record Projector_Variables_Payload(int radius,int thickness, int transparency) implements CustomPayload {
-        public static final CustomPayload.Id<Projector_Variables_Payload> ID = new CustomPayload.Id<>(ModPackets.PROJECTOR_SCREEN_PACKET_ID);
+        public static final CustomPayload.Id<Projector_Variables_Payload> ID = new CustomPayload.Id<>(Packets.PROJECTOR_SCREEN_PACKET_ID);
         public static final PacketCodec<RegistryByteBuf, Projector_Variables_Payload> CODEC = PacketCodec.tuple(
                 PacketCodecs.INTEGER, Projector_Variables_Payload::radius,
                 PacketCodecs.INTEGER, Projector_Variables_Payload::thickness,

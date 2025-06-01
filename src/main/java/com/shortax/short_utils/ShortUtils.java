@@ -44,8 +44,7 @@ public class ShortUtils implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		ModPackets.init();
-		ModPayLoads.init();
+		ModPayloads.init();
 		ServerReceivers.init();
 		ClientReceivers.init();
 

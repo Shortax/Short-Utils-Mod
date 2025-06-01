@@ -21,12 +21,15 @@
 
 package com.shortax.short_utils.items;
 
+import com.shortax.short_utils.Initializers.Utils;
+import com.shortax.short_utils.Initializers.constants;
 import com.shortax.short_utils.blocks.blockEntities.Projector.gen_projected_block;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -34,6 +37,10 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 public class projected_remover extends Item {
+
+    public static Utils.custom_tooltip_bundle TOOLTIP_BUNDLE = new Utils.custom_tooltip_bundle(constants.translated_tooltip_flag)
+            .addFormatting(Formatting.ITALIC)
+            .addFormatting(Formatting.LIGHT_PURPLE);
 
     public projected_remover(Settings settings) {
         super(settings);

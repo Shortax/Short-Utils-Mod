@@ -49,5 +49,7 @@
   "block.short_utils.projector_block": "Projektor",
 
   "item.short_utils.projected_remover": "Projeziert Entferner",
-  "item.short_utils.useful_sword": "Nützliches Schwert?"
+  "item.short_utils.projected_remover.tooltip": "Entfernt die vom Projektor erzeugten Blöcke",
+  "item.short_utils.useful_sword": "Nützliches Schwert?",
+  "item.short_utils.fake_redstone.tooltip": "*Reagiert nicht auf Redstone-Signale*"
 }

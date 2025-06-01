@@ -4,11 +4,15 @@ import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.items.ItemSettings.ModItemSettings;
 import com.shortax.short_utils.items.projected_remover;
 import com.shortax.short_utils.items.useful_sword;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemGroups;
+import net.minecraft.util.Formatting;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ModItems {
 
@@ -20,6 +24,8 @@ public class ModItems {
 
     public static List<ItemConvertible> itemsListCustomTab;
 
+    public static Map<Item, Utils.custom_tooltip_bundle> tooltip;
+
     public static void init()
     {
         List<ItemConvertible> itemsListRedstone = new ArrayList<>();
@@ -27,14 +33,19 @@ public class ModItems {
         List<ItemConvertible> itemsListTools = new ArrayList<>();
         List<ItemConvertible> itemsListCombat = new ArrayList<>();
         List<ItemConvertible> itemsListIngredients = new ArrayList<>();
+
         itemsListCustomTab = new ArrayList<>();
+
+        tooltip = new HashMap<>();
 
 
         PROJECTED_REMOVER = (projected_remover) Utils.registerItem_C(PROJECTED_REMOVER_ID,projected_remover::new,ModItemSettings.PROJECTED_REMOVER);
         itemsListCustomTab.add(PROJECTED_REMOVER);
+        tooltip.put(PROJECTED_REMOVER,projected_remover.TOOLTIP_BUNDLE);
 
         USEFUL_SWORD = (useful_sword) Utils.registerItem_C(USEFUL_SWORD_ID,useful_sword::new,ModItemSettings.USEFUL_SWORD);
         itemsListCustomTab.add(USEFUL_SWORD);
+        tooltip.put(USEFUL_SWORD,useful_sword.TOOLTIP_BUNDLE);
 
 
         itemsListCustomTab.addAll(itemsListRedstone);
@@ -49,5 +60,6 @@ public class ModItems {
         Utils.registerItemGroupEntry(ItemGroups.TOOLS,itemsListTools);
         Utils.registerItemGroupEntry(ItemGroups.COMBAT,itemsListCombat);
         Utils.registerItemGroupEntry(ItemGroups.INGREDIENTS,itemsListIngredients);
+
     }
 }

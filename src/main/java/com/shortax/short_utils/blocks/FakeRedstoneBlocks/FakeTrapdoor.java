@@ -21,8 +21,10 @@
 
 package com.shortax.short_utils.blocks.FakeRedstoneBlocks;
 
+import com.shortax.short_utils.Initializers.Utils;
 import net.minecraft.block.*;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.block.WireOrientation;
@@ -32,6 +34,9 @@ public class FakeTrapdoor extends TrapdoorBlock {
     public Block ORIGINAL;
 
     private static final float strength = 0.1f;
+    public static final Utils.custom_tooltip_bundle TOOLTIP_BUNDLE = new Utils.custom_tooltip_bundle("")
+            .addTag("fake_redstone")
+            .addFormatting(Formatting.GRAY);
 
     public static class OAK_TYPE extends FakeTrapdoor{
         public static BlockSetType type = BlockSetType.OAK;
@@ -78,4 +83,8 @@ public class FakeTrapdoor extends TrapdoorBlock {
             }
         }
     }
+
+
+
+
 }

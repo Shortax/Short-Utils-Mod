@@ -23,6 +23,9 @@ package com.shortax.short_utils.Initializers;
 
 import com.shortax.short_utils.ShortUtils;
 import com.shortax.short_utils.blocks.cRedstoneLamp.colRedstoneLamp;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.block.AbstractBlock;
@@ -32,12 +35,15 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -115,10 +121,48 @@ public class Utils {
         return Registry.register(Registries.ITEM,ident,item);
     }
 
+    @SuppressWarnings("unused")
     public static void LogToChat(String message, World world){
         if(!world.isClient){
             Objects.requireNonNull(world.getServer()).getPlayerManager().broadcast(Text.of(message),false);
         }
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void addTooltip(Item item, Collection<Formatting> formattings)
+    {
+        add_tagged_Tooltip(item,Registries.ITEM.getId(item).getPath(), formattings);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void add_tagged_Tooltip(Item item, String tag, Collection<Formatting> formattings)
+    {
+        add_String_tooltip( item , Text.translatable(
+                get_tooltip_path(
+                        tag
+                )),
+                formattings
+        );
+    }
+
+    @Environment(EnvType.CLIENT)
+    public static void add_String_tooltip(Item item, MutableText text, Collection<Formatting> formattings)
+    {
+        for(Formatting f : formattings){
+            text = text.formatted(f);
+        }
+        MutableText formattedText = text;
+        ItemTooltipCallback.EVENT.register((itemStack, tooltipContext, tooltipType, list) -> {
+            if (!itemStack.isOf(item)) {
+                return;
+            }
+            list.add(formattedText);
+        });
+    }
+
+    public static String get_tooltip_path(String path)
+    {
+        return "item.short_utils." + path + ".tooltip";
     }
 
     public static Item getDye(String color){ return colRedstoneLamp.getDye(color); }
@@ -126,5 +170,32 @@ public class Utils {
     public static void Log_registering(String LogType, String modID)
     {
         ShortUtils.LOGGER.info("Registering {}: {}", LogType, modID);
+    }
+
+    public static class custom_tooltip_bundle{
+        private final List<Formatting> formattings;
+        public final String text;
+        public String tag;
+
+        public custom_tooltip_bundle(String t){
+            formattings = new ArrayList<>();
+            text = t;
+            tag = null;
+        }
+
+        public custom_tooltip_bundle addFormatting(Formatting format){
+            formattings.add(format);
+            return this;
+        }
+
+        public List<Formatting> getFormattings(){
+            return this.formattings;
+        }
+
+        public custom_tooltip_bundle addTag(String tag)
+        {
+            this.tag = tag;
+            return this;
+        }
     }
 }

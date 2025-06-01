@@ -21,7 +21,7 @@
 
 package com.shortax.short_utils.blocks.blockEntities.Projector.ProjectorScreen;
 
-import com.shortax.short_utils.Initializers.ModPayLoads;
+import com.shortax.short_utils.Initializers.ModPayloads;
 import com.shortax.short_utils.ShortUtils;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -158,7 +158,7 @@ public class ProjectorScreen extends HandledScreen<ProjectorScreenHandler> {
 
     private void updateToServer()
     {
-        ClientPlayNetworking.send(new ModPayLoads.Projector_Variables_Payload(this.client_radius,this.client_thickness,this.client_transparency));
+        ClientPlayNetworking.send(new ModPayloads.Projector_Variables_Payload(this.client_radius,this.client_thickness,this.client_transparency));
     }
 
     private boolean compare_client_values()

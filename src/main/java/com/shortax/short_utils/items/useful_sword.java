@@ -21,10 +21,14 @@
 
 package com.shortax.short_utils.items;
 
+import com.shortax.short_utils.Initializers.Utils;
 import net.minecraft.item.Item;
+import net.minecraft.util.Formatting;
 
 public class useful_sword extends Item {
-
+    public static Utils.custom_tooltip_bundle TOOLTIP_BUNDLE = new Utils.custom_tooltip_bundle("What does it do?")
+            .addFormatting(Formatting.ITALIC)
+            .addFormatting(Formatting.YELLOW);
     public useful_sword(Settings settings) {
         super(settings);
     }
