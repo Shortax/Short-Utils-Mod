@@ -39,6 +39,7 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     public void generate() {
 
         addDrop(ModBlocks.OBSID_PRESSURE_PLATE);
+        addDrop(ModBlocks.STAR_BLOCK_LIGHT);
         addDrop(ModBlocks.FAKE_OAK_TRAPDOOR);
         addDrop(ModBlocks.FAKE_SPRUCE_TRAPDOOR);
         addDrop(ModBlocks.FAKE_IRON_TRAPDOOR);

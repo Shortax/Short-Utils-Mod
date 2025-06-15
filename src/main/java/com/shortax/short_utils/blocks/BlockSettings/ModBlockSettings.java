@@ -25,6 +25,7 @@ import com.shortax.short_utils.sounds.blocks.ModBlockSoundGroups;
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.MapColor;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.sound.BlockSoundGroup;
 
@@ -65,4 +66,10 @@ public class ModBlockSettings {
             .suffocates(Blocks::never)
             .blockVision(Blocks::never)
             .air();
+
+    public static final AbstractBlock.Settings STAR_BLOCK_LIGHT = AbstractBlock.Settings
+            .create()
+            .requiresTool()
+            .instrument(NoteBlockInstrument.BELL)
+            .strength(1.8F).mapColor(MapColor.GRAY).luminance(state -> 10);
 }

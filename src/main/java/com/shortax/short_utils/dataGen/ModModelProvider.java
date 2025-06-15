@@ -60,6 +60,9 @@ public class ModModelProvider extends FabricModelProvider {
         //Obsidian Pressure Plate
         register_plate(ModBlocks.OBSID_PRESSURE_PLATE,blockStateModelGenerator,obsidianTexture);
 
+        //Star Block light
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.STAR_BLOCK_LIGHT);
+
         //colored Lamps
         Utils.applyToEach(ModBlocks.COLORED_REDSTONE_LAMPS.values(), block -> registerCustomLamp(block,blockStateModelGenerator));
 

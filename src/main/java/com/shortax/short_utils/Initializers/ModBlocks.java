@@ -29,6 +29,7 @@ import com.shortax.short_utils.blocks.blockEntities.Projector.gen_projected_bloc
 import com.shortax.short_utils.blocks.blockEntities.Projector.projector_block;
 import com.shortax.short_utils.blocks.blockEntities.mixedBlocks.mixed_block;
 import com.shortax.short_utils.blocks.stairs.LeafStair;
+import com.shortax.short_utils.blocks.star_block_light;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemConvertible;
@@ -53,6 +54,7 @@ public class ModBlocks {
     public static List<LeafStair> LEAVES_STAIRS;
     public static combiner_block COMBINER_BLOCK;
     public static String COMBINER_BLOCK_ID = "combiner_block";
+    public static star_block_light STAR_BLOCK_LIGHT;
     public static String GEN_PROJECTED_BLOCK_ID = "projected_block";
     public static gen_projected_block GEN_PROJECTED_BLOCK;
 
@@ -110,6 +112,9 @@ public class ModBlocks {
 
         COMBINER_BLOCK = (combiner_block) Utils.registerBlock_C(COMBINER_BLOCK_ID,combiner_block::new, ModBlockSettings.COMBINER_BLOCK);
         blocksListFunctional.add(COMBINER_BLOCK);
+
+        STAR_BLOCK_LIGHT = (star_block_light) Utils.registerBlock_C("star_block_light",star_block_light::new,ModBlockSettings.STAR_BLOCK_LIGHT);
+        blocksListBuilding.add(STAR_BLOCK_LIGHT);
 
         GEN_PROJECTED_BLOCK = (gen_projected_block) Utils.registerBlock_C(GEN_PROJECTED_BLOCK_ID,gen_projected_block::new,ModBlockSettings.GEN_PROJECTED_BLOCK);
         BlocksWithTransparency.add(GEN_PROJECTED_BLOCK);

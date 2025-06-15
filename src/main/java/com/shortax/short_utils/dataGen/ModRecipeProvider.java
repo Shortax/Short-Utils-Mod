@@ -86,6 +86,14 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                                 .offerTo(exporter)
                 );
 
+                ShapelessRecipeJsonBuilder
+                        .create(Registries.ITEM,RecipeCategory.DECORATIONS,ModBlocks.STAR_BLOCK_LIGHT)
+                        .input(Blocks.BLACK_CONCRETE)
+                        .input(Items.GLOWSTONE_DUST)
+                        .criterion(hasItem(Blocks.BLACK_CONCRETE),conditionsFromItem(Blocks.BLACK_CONCRETE))
+                        .criterion(hasItem(Items.GLOWSTONE_DUST),conditionsFromItem(Items.GLOWSTONE_DUST))
+                        .offerTo(exporter);
+
                 ShapedRecipeJsonBuilder
                         .create(Registries.ITEM,RecipeCategory.MISC,ModBlocks.COMBINER_BLOCK,1)
                         .input('#',Items.IRON_INGOT)
@@ -97,6 +105,20 @@ public class ModRecipeProvider extends FabricRecipeProvider{
                         .pattern("BDB")
                         .pattern("#L#")
                         .criterion(hasItem(Items.DIAMOND),conditionsFromItem(Items.DIAMOND))
+                        .criterion(hasItem(Blocks.IRON_BLOCK),conditionsFromItem(Blocks.IRON_BLOCK))
+                        .offerTo(exporter);
+
+                ShapedRecipeJsonBuilder
+                        .create(Registries.ITEM,RecipeCategory.MISC,ModBlocks.WithEntities.PROJECTOR_BLOCK,1)
+                        .input('#',Blocks.WHITE_CONCRETE)
+                        .input('P',Blocks.PURPLE_CONCRETE)
+                        .input('E',Items.ENDER_EYE)
+                        .pattern("#P#")
+                        .pattern("PEP")
+                        .pattern("#P#")
+                        .criterion(hasItem(Items.ENDER_EYE),conditionsFromItem(Items.ENDER_EYE))
+                        .criterion(hasItem(Blocks.WHITE_CONCRETE),conditionsFromItem(Blocks.WHITE_CONCRETE))
+                        .criterion(hasItem(Blocks.PURPLE_CONCRETE),conditionsFromItem(Blocks.PURPLE_CONCRETE))
                         .offerTo(exporter);
             }
 
